@@ -12,7 +12,8 @@ struct SearchView: View {
     @State private var ingredients : [String] = []
     @State private var alertMessage = ""
     @State private var alertIsPresented = false
-    
+    @State private var recipes : [Recipe] = []
+    @State private var recipeListViewIsPresented = false
     
     var body: some View {
         NavigationView(content: {
@@ -34,6 +35,7 @@ struct SearchView: View {
                                     return
                                 }
                                 ingredients.append(ingredient)
+                                ingredient.removeAll()
                                 print("Tapped")
                             } label: {
                                 Text("Add")
@@ -80,7 +82,15 @@ struct SearchView: View {
                     }
                     Spacer()
                     Button {
-                        
+                        RecipleaseService.shared.getRecepleases(ingredients: ingredients) { success, recipes, error in
+                            guard success, let recipes = recipes, error == nil else {
+                                return
+                            }
+                            self.recipes = recipes
+                            recipeListViewIsPresented.toggle()
+                            print(recipes.count)
+                            
+                        }
                     } label: {
                         Text("Search for recipe")
                             .foregroundColor(.white)
@@ -91,7 +101,11 @@ struct SearchView: View {
                     .padding()
 
                 }
+                .fullScreenCover(isPresented: $recipeListViewIsPresented) {
+                    RecipesListView(recipes: $recipes)
+                }
             }
+            
         })
     }
     private func addIngredient() {

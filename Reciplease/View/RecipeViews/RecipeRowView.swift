@@ -4,7 +4,6 @@
 //
 //  Created by Sébastien DAGUIN on 07/11/2022.
 //
-
 import SwiftUI
 
 struct RecipeRow: View {
@@ -12,11 +11,14 @@ struct RecipeRow: View {
     
     var body: some View {
         ZStack {
-            AsyncImage(url: URL(string: recipe.recipe.image))
-                .frame(maxWidth: .infinity, maxHeight: 250)
-                .scaleEffect(1.45)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                
+            AsyncImage(url: URL(string: recipe.recipe.image)) { image in
+                image.resizable()
+                    .resizable()
+                    .scaledToFill()
+                    .frame(maxWidth: .infinity, maxHeight: 200)
+            } placeholder: {
+                ProgressView()
+            }
             VStack(alignment : .leading) {
                 HStack {
                     Spacer()
@@ -43,13 +45,15 @@ struct RecipeRow: View {
                     Text(getIngredients())
                         .foregroundColor(.white)
                         .lineLimit(0)
+                        .padding(.bottom)
                     
                     
                 }
             }
         }
+        .clipped()
         .frame(maxWidth: .infinity, maxHeight: 200)
-        
+        .border(.black, width: 2)
         
     }
     private func getIngredients() -> String {
