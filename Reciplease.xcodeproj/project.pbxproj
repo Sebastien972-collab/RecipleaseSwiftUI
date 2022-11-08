@@ -24,6 +24,8 @@
 		CFE1FC3D2918BA0D00D01CA0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CFE1FC3C2918BA0D00D01CA0 /* Alamofire */; };
 		CFE80FE62918F84F00BFE299 /* LabelRecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE80FE52918F84F00BFE299 /* LabelRecipeRowView.swift */; };
 		CFE80FE82918F8D200BFE299 /* RecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE80FE72918F8D200BFE299 /* RecipeRowView.swift */; };
+		CFE80FEA2919040C00BFE299 /* RecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE80FE92919040C00BFE299 /* RecipeDetailsView.swift */; };
+		CFE80FEC291A296C00BFE299 /* LaunchScreenView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFE80FEB291A296C00BFE299 /* LaunchScreenView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		CFE1FC392918B98400D01CA0 /* RecipesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesService.swift; sourceTree = "<group>"; };
 		CFE80FE52918F84F00BFE299 /* LabelRecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelRecipeRowView.swift; sourceTree = "<group>"; };
 		CFE80FE72918F8D200BFE299 /* RecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRowView.swift; sourceTree = "<group>"; };
+		CFE80FE92919040C00BFE299 /* RecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView.swift; sourceTree = "<group>"; };
+		CFE80FEB291A296C00BFE299 /* LaunchScreenView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,7 @@
 				CFE1FC0629188C2400D01CA0 /* ContentView.swift */,
 				CFE1FC322918929600D01CA0 /* SearchView.swift */,
 				CFE1FC362918B89D00D01CA0 /* RecipeViews */,
+				CFE80FEB291A296C00BFE299 /* LaunchScreenView.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				CF862F962918D75E007EBA6A /* RecipesListView.swift */,
 				CFE80FE52918F84F00BFE299 /* LabelRecipeRowView.swift */,
 				CFE80FE72918F8D200BFE299 /* RecipeRowView.swift */,
+				CFE80FE92919040C00BFE299 /* RecipeDetailsView.swift */,
 			);
 			path = RecipeViews;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			files = (
 				CFE1FC0D29188C2500D01CA0 /* Preview Assets.xcassets in Resources */,
 				CFE1FC0929188C2500D01CA0 /* Assets.xcassets in Resources */,
+				CFE80FEC291A296C00BFE299 /* LaunchScreenView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFE80FEA2919040C00BFE299 /* RecipeDetailsView.swift in Sources */,
 				CFE1FC332918929600D01CA0 /* SearchView.swift in Sources */,
 				CFE1FC0529188C2400D01CA0 /* Reciplease.xcdatamodeld in Sources */,
 				CFE80FE82918F8D200BFE299 /* RecipeRowView.swift in Sources */,
@@ -501,6 +509,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView.storyboard;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -539,6 +548,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreenView.storyboard;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

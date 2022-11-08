@@ -13,7 +13,7 @@ struct SearchView: View {
     @State private var alertMessage = ""
     @State private var alertIsPresented = false
     @State private var recipes : [Recipe] = []
-    @State private var recipeListViewIsPresented = false
+    @State private var showSearchView = false
     
     var body: some View {
         NavigationView(content: {
@@ -87,7 +87,7 @@ struct SearchView: View {
                                 return
                             }
                             self.recipes = recipes
-                            recipeListViewIsPresented.toggle()
+                            showSearchView.toggle()
                             print(recipes.count)
                             
                         }
@@ -101,8 +101,8 @@ struct SearchView: View {
                     .padding()
 
                 }
-                .fullScreenCover(isPresented: $recipeListViewIsPresented) {
-                    RecipesListView(recipes: $recipes)
+                .fullScreenCover(isPresented: $showSearchView) {
+                    RecipesListView(isPresented: $showSearchView, recipes: $recipes)
                 }
             }
             

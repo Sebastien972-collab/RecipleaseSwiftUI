@@ -8,20 +8,41 @@
 import SwiftUI
 
 struct RecipesListView: View {
+    @Binding var isPresented : Bool
     @Binding var recipes : [Recipe]
     
     var body: some View {
-        ZStack {
-            Color.backgroundApp.edgesIgnoringSafeArea(.top)
-            VStack {
-                Text("Reciplease")
-                    .font(.title)
-                    .foregroundColor(.white)
-                ScrollView {
-                    VStack {
-                        ForEach(recipes, id: \.self) { recipe in
-                            RecipeRow(recipe: recipe)
+        NavigationView {
+            ZStack {
+                Color.backgroundApp.edgesIgnoringSafeArea(.top)
+                VStack {
+                    ScrollView {
+                        VStack {
+                            ForEach(recipes, id: \.self) { recipe in
+                                NavigationLink {
+                                    RecipeDetailsView(recipe: recipe)
+                                } label: {
+                                    RecipeRow(recipe: recipe)
+                                }
+
+                            }
                         }
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button {
+                                isPresented.toggle()
+                            } label: {
+                                Text("< Back")
+                            }
+
+                        }
+                        ToolbarItem(placement : .principal) {
+                            Text("Reciplease")
+                                .font(.title)
+                                .foregroundColor(.white)
+                        }
+                        
                     }
                 }
             }
@@ -31,6 +52,8 @@ struct RecipesListView: View {
 
 struct RecipesListView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipesListView(recipes: .constant([Recipe.defaultRecipe, Recipe.defaultRecipe, Recipe.defaultRecipe]))
+        NavigationView {
+            RecipesListView(isPresented: .constant(true), recipes: .constant([Recipe.defaultRecipe, Recipe.defaultRecipe, Recipe.defaultRecipe]))
+        }
     }
 }
