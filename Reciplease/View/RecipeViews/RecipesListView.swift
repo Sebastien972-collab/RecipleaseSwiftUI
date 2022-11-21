@@ -8,42 +8,31 @@
 import SwiftUI
 
 struct RecipesListView: View {
-    @Binding var isPresented : Bool
     @Binding var recipes : [Recipe]
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color.backgroundApp.edgesIgnoringSafeArea(.top)
-                VStack {
-                    ScrollView {
-                        VStack {
-                            ForEach(recipes, id: \.self) { recipe in
-                                NavigationLink {
-                                    RecipeDetailsView(recipe: recipe)
-                                } label: {
-                                    RecipeRow(recipe: recipe)
-                                }
-
-                            }
-                        }
-                    }
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button {
-                                isPresented.toggle()
+        ZStack {
+            Color.backgroundApp.edgesIgnoringSafeArea(.top)
+            VStack {
+                ScrollView {
+                    VStack {
+                        ForEach(recipes, id: \.self) { recipe in
+                            NavigationLink {
+                                RecipeDetailsView(recipe: recipe)
                             } label: {
-                                Text("< Back")
+                                RecipeRow(recipe: recipe)
                             }
 
                         }
-                        ToolbarItem(placement : .principal) {
-                            Text("Reciplease")
-                                .font(.title)
-                                .foregroundColor(.white)
-                        }
-                        
                     }
+                }
+                .toolbar {
+                    ToolbarItem(placement : .principal) {
+                        Text("Reciplease")
+                            .font(.title)
+                            .foregroundColor(.white)
+                    }
+                    
                 }
             }
         }
@@ -53,7 +42,7 @@ struct RecipesListView: View {
 struct RecipesListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RecipesListView(isPresented: .constant(true), recipes: .constant([Recipe.defaultRecipe, Recipe.defaultRecipe, Recipe.defaultRecipe]))
+            RecipesListView( recipes: .constant([Recipe.defaultRecipe, Recipe.defaultRecipe, Recipe.defaultRecipe]))
         }
     }
 }

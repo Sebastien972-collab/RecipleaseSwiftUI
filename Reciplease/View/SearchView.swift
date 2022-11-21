@@ -14,30 +14,19 @@ struct SearchView: View {
     @State private var alertIsPresented = false
     @State private var recipes : [Recipe] = []
     @State private var showSearchView = false
+    @FocusState private var fieldIsFocused : Bool
     
     var body: some View {
-        NavigationView(content: {
+        NavigationStack{
             ZStack {
                 Color("bacgroundAppColor").edgesIgnoringSafeArea(.top)
                 VStack {
-                    Text("Reciplease")
-                        .font(.title)
-                        .foregroundColor(.white)
                     VStack {
                         Text("What's in your fridge ? ")
                         HStack {
                             TextField("Lemon, Cheese, Sausages...", text: $ingredient)
-                            Button {
-                                addIngredient()
-                                guard !ingredient.isEmpty else {
-                                    alertMessage = "Oups... ce champs ne peut pas être vide"
-                                    alertIsPresented.toggle()
-                                    return
-                                }
-                                ingredients.append(ingredient)
-                                ingredient.removeAll()
-                                print("Tapped")
-                            } label: {
+                                .focused($fieldIsFocused)
+                            Button(action: addIngredient) {
                                 Text("Add")
                                     .foregroundColor(.white)
                                     .bold()
@@ -45,7 +34,6 @@ struct SearchView: View {
                                     .background(Color("greenApp"))
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
-                            
                         }
                         .padding()
                         Divider()
@@ -77,16 +65,29 @@ struct SearchView: View {
                                 .font(.title3)
                                 .foregroundColor(.white)
                                 .bold()
-                            
                         }
                     }
                     Spacer()
                     Button {
+                        guard !ingredients.isEmpty else {
+                            alertMessage = "Oups... Vous n'avez pas entrer d'ingrédients."
+                            alertIsPresented.toggle()
+                            return
+                        }
                         RecipleaseService.shared.getRecepleases(ingredients: ingredients) { success, recipes, error in
                             guard success, let recipes = recipes, error == nil else {
+                                fieldIsFocused = false
+                                alertMessage = error?.localizedDescription ?? "Unkonow Error"
+                                alertIsPresented.toggle()
                                 return
                             }
+                            fieldIsFocused = false
                             self.recipes = recipes
+                            guard !self.recipes.isEmpty else {
+                                alertMessage = "Oups... Nous n'avons pas trouver de recettes."
+                                alertIsPresented.toggle()
+                                return
+                            }
                             showSearchView.toggle()
                             print(recipes.count)
                             
@@ -98,35 +99,54 @@ struct SearchView: View {
                             .background(Color("greenApp"))
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
+                    .navigationDestination(isPresented: $showSearchView, destination: {
+                        RecipesListView(recipes: $recipes)
+                    })
                     .padding()
 
                 }
-                .fullScreenCover(isPresented: $showSearchView) {
-                    RecipesListView(isPresented: $showSearchView, recipes: $recipes)
-                }
+                .toolbar(content: {
+                    ToolbarItem(placement: .principal) {
+                        Text("Reciplease")
+                            .font(.title)
+                            .foregroundColor(.white)
+                    }
+                })
+                
             }
-            
-        })
+            .onTapGesture {
+                fieldIsFocused = false
+            }
+            .alert(isPresented: $alertIsPresented) {
+                    Alert(
+                        title: Text("Error"),
+                        message: Text(alertMessage),
+                        dismissButton: .default(Text("Ok"))
+                    )
+                }
+        }
+        
     }
     private func addIngredient() {
-//        guard  !ingredient.isEmpty else {
-//            alertMessage = "Oups... Ce champ ne peut pas être vide"
-//            alertIsPresented.toggle()
-//            return
-//        }
-//        let ingredientsToAdd = ingredients.split(separator: ",")
-//        for newIngredient in ingredientsToAdd {
-//            print(newIngredient)
-//            let value = String(newIngredient)
-//
-//            if haveAnumber(value: newIngredient) {
-//                alertMessage = "Charactère non pris en charge."
-//            }
-//            else if !ingredients.contains(clearWord(newIngredient)) {
-//                ingredients.append(clearWord(newIngredient))
-//
-//            }
-//        }
+        guard  !ingredient.isEmpty else {
+            alertMessage = "Oups... Ce champ ne peut pas être vide"
+            alertIsPresented.toggle()
+            return
+        }
+        let ingredientsToAdd = ingredient.split(separator: ",")
+        for newIngredient in ingredientsToAdd {
+            print(newIngredient)
+            let value = String(newIngredient)
+            if haveAnumber(value: value) {
+                alertMessage = "Charactère non pris en charge."
+            }
+            else if !ingredients.contains(clearWord(value)) {
+                ingredients.append(clearWord(value))
+
+            }
+        }
+        ingredient.removeAll()
+        print("Tapped")
         
     }
     private func clearWord(_ word : String) -> String {
