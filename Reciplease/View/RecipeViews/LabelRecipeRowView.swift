@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LabelRecipeRowView: View {
-    var recipe : Recipe
+    var recipe : Hit
     
     var body: some View {
         VStack(alignment : .leading) {

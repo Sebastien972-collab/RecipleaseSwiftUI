@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct RecipeRow: View {
-    var recipe : RecipeDetails
+    var recipe : Recipe
     
     var body: some View {
         ZStack {
@@ -68,6 +68,6 @@ struct RecipeRow: View {
 
 struct RecipeRow_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeRow(recipe: Recipe.defaultRecipe.recipe)
+        RecipeRow(recipe: Hit.defaultRecipe.recipe)
     }
 }

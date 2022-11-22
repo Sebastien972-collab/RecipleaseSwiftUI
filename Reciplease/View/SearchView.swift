@@ -82,7 +82,10 @@ struct SearchView: View {
                                 return
                             }
                             fieldIsFocused = false
-                            self.recipes = recipes
+                            for recipe in recipes {
+                                self.recipes.append(recipe.recipe)
+                            }
+                           
                             guard !self.recipes.isEmpty else {
                                 alertMessage = "Oups... Nous n'avons pas trouver de recettes."
                                 alertIsPresented.toggle()

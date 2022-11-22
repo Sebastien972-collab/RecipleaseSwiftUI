@@ -18,9 +18,9 @@ struct RecipesListView: View {
                     VStack {
                         ForEach(recipes, id: \.self) { recipe in
                             NavigationLink {
-                                RecipeDetailsView(recipe: recipe.recipe)
+                                RecipeDetailsView(recipe: recipe)
                             } label: {
-                                RecipeRow(recipe: recipe.recipe)
+                                RecipeRow(recipe: recipe)
                             }
 
                         }
@@ -42,7 +42,7 @@ struct RecipesListView: View {
 struct RecipesListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RecipesListView(recipes: [Recipe.defaultRecipe, Recipe.defaultRecipe, Recipe.defaultRecipe])
+            RecipesListView(recipes: [Hit.defaultRecipe.recipe, Hit.defaultRecipe.recipe, Hit.defaultRecipe.recipe])
         }
     }
 }

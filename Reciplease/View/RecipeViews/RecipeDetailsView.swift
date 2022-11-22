@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 struct RecipeDetailsView: View {
-    var recipe : RecipeDetails
+    var recipe : Recipe
     @Environment(\.managedObjectContext) private var viewContext
     @State private var showDirectionView = false
     @State private var vcError = ""
@@ -51,9 +51,9 @@ struct RecipeDetailsView: View {
                     Text("Get direction")
                         .padding()
                 }
-                .navigationDestination(isPresented: $showDirectionView) {
-                    SafariView(url: recipe.url)
-                }
+//                .navigationDestination(isPresented: $showDirectionView) {
+//                    SafariView(url: recipe.url)
+//                }
 
             })
             .toolbar {
@@ -100,7 +100,7 @@ struct RecipeDetailsView: View {
 struct RecipeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RecipeDetailsView(recipe: Recipe.defaultRecipe.recipe)
+            RecipeDetailsView(recipe: Hit.defaultRecipe.recipe)
         }
     }
 }

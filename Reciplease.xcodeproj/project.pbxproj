@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CF32E6F3292C00D400C16B57 /* FavoriteRecipesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32E6F2292C00D400C16B57 /* FavoriteRecipesListView.swift */; };
-		CF441A57292B481900C38F71 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF441A56292B481900C38F71 /* SafariView.swift */; };
 		CF66E873292BEF95003A4CC6 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66E872292BEF95003A4CC6 /* Recipe.swift */; };
 		CF862F972918D75E007EBA6A /* RecipesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF862F962918D75E007EBA6A /* RecipesListView.swift */; };
 		CF862F992918DA1A007EBA6A /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF862F982918DA1A007EBA6A /* ExtensionColor.swift */; };
@@ -50,7 +49,6 @@
 
 /* Begin PBXFileReference section */
 		CF32E6F2292C00D400C16B57 /* FavoriteRecipesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesListView.swift; sourceTree = "<group>"; };
-		CF441A56292B481900C38F71 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		CF66E872292BEF95003A4CC6 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		CF862F962918D75E007EBA6A /* RecipesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesListView.swift; sourceTree = "<group>"; };
 		CF862F982918DA1A007EBA6A /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
@@ -177,10 +175,8 @@
 			children = (
 				CFE1FC0629188C2400D01CA0 /* ContentView.swift */,
 				CFE1FC322918929600D01CA0 /* SearchView.swift */,
-				CFE1FC362918B89D00D01CA0 /* RecipeViews */,
-				CFE80FEB291A296C00BFE299 /* LaunchScreenView.storyboard */,
-				CF441A56292B481900C38F71 /* SafariView.swift */,
 				CF32E6F2292C00D400C16B57 /* FavoriteRecipesListView.swift */,
+				CFE1FC362918B89D00D01CA0 /* RecipeViews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +184,7 @@
 		CFE1FC312918924A00D01CA0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CFE80FEB291A296C00BFE299 /* LaunchScreenView.storyboard */,
 				CFE1FC0829188C2500D01CA0 /* Assets.xcassets */,
 				CF862F982918DA1A007EBA6A /* ExtensionColor.swift */,
 			);
@@ -344,7 +341,6 @@
 			files = (
 				CFE80FEA2919040C00BFE299 /* RecipeDetailsView.swift in Sources */,
 				CFE1FC332918929600D01CA0 /* SearchView.swift in Sources */,
-				CF441A57292B481900C38F71 /* SafariView.swift in Sources */,
 				CFE1FC0529188C2400D01CA0 /* Reciplease.xcdatamodeld in Sources */,
 				CFE80FE82918F8D200BFE299 /* RecipeRowView.swift in Sources */,
 				CFE80FE62918F84F00BFE299 /* LabelRecipeRowView.swift in Sources */,
