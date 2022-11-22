@@ -100,7 +100,7 @@ struct SearchView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                     .navigationDestination(isPresented: $showSearchView, destination: {
-                        RecipesListView(recipes: $recipes)
+                        RecipesListView(recipes: recipes)
                     })
                     .padding()
 

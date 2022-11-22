@@ -7,11 +7,11 @@
 import SwiftUI
 
 struct RecipeRow: View {
-    var recipe : Recipe
+    var recipe : RecipeDetails
     
     var body: some View {
         ZStack {
-            AsyncImage(url: URL(string: recipe.recipe.image)) { image in
+            AsyncImage(url: URL(string: recipe.image)) { image in
                 image.resizable()
                     .resizable()
                     .scaledToFill()
@@ -38,7 +38,7 @@ struct RecipeRow: View {
                 }
                 Spacer()
                 VStack(spacing : 10) {
-                    Text(recipe.recipe.label)
+                    Text(recipe.label)
                         .font(.title2)
                         .foregroundColor(.white)
                         .bold()
@@ -59,7 +59,7 @@ struct RecipeRow: View {
     private func getIngredients() -> String {
         var  ingredients = ""
         
-        for ingredient in recipe.recipe.ingredientLines {
+        for ingredient in recipe.ingredientLines {
             ingredients = ingredients + ", \(ingredient)"
         }
         return ingredients
@@ -68,6 +68,6 @@ struct RecipeRow: View {
 
 struct RecipeRow_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeRow(recipe: .defaultRecipe)
+        RecipeRow(recipe: Recipe.defaultRecipe.recipe)
     }
 }

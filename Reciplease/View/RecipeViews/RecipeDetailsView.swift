@@ -6,38 +6,56 @@
 //
 
 import SwiftUI
-
+import CoreData
 struct RecipeDetailsView: View {
-    var recipe : Recipe
+    var recipe : RecipeDetails
+    @Environment(\.managedObjectContext) private var viewContext
+    @State private var showDirectionView = false
+    @State private var vcError = ""
+    @State private var showError = false
     
     var body: some View {
         ZStack {
             Color.backgroundApp.edgesIgnoringSafeArea(.top)
-            VStack(alignment : .leading) {
-                ZStack {
-                    Image("image1")
-                        .resizable()
-                    .frame(maxWidth: .infinity, maxHeight: 300)
-                    Text(recipe.recipe.label)
-                        .foregroundColor(.white)
-                        .font(.title)
-                        .offset(y : 100)
+            VStack(content: {
+                ScrollView(content: {
+                    VStack(alignment : .leading) {
+                        ZStack {
+                            Image("image1")
+                                .resizable()
+                            .frame(maxWidth: .infinity, maxHeight: 300)
+                            Text(recipe.label)
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .offset(y : 100)
+                        }
+                        
+                        Text("Ingredients ")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .padding(.horizontal)
+                        
+                        ForEach(recipe.ingredientLines, id: \.self) { ingredient in
+                            Text("- \(ingredient)")
+                                .font(.title3)
+                                .foregroundColor(.white)
+                                .padding(.horizontal)
+                        }
+                        
+                        Spacer()
+                    }
+                })
+                Button {
+                    showDirectionView.toggle()
+                } label: {
+                    Text("Get direction")
+                        .padding()
                 }
-                
-                Text("Ingredients ")
-                    .font(.title2)
-                    .foregroundColor(.white)
-                    .padding(.horizontal)
-                
-                ForEach(recipe.recipe.ingredientLines, id: \.self) { ingredient in
-                    Text("- \(ingredient)")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .padding(.horizontal)
+                .navigationDestination(isPresented: $showDirectionView) {
+                    SafariView(url: recipe.url)
                 }
-                
-                Spacer()
-            }
+
+            })
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Reciplease")
@@ -46,7 +64,26 @@ struct RecipeDetailsView: View {
                 }
                 ToolbarItem(placement : .navigationBarTrailing) {
                     Button {
+                    let recipeFav = CDRecipe(context: viewContext)
+                        recipeFav.url = recipe.url
+                        recipeFav.source = recipe.source
+                        recipeFav.image = recipe.image
+                        recipeFav.label = recipe.label
+                        var ingredientsString = ""
+                        for (index, ingredient) in recipe.ingredientLines.enumerated() {
+                            if index == 0 {
+                                ingredientsString += ingredient
+                            }
+                            ingredientsString += ",\(ingredient) "
+                        }
+                        recipeFav.ingredientLines = ingredientsString
                         
+                        do {
+                            try viewContext.save()
+                        } catch {
+                            vcError = error.localizedDescription
+                            showError.toggle()
+                        }
                     } label: {
                         Image(systemName: "star.fill")
                             .foregroundColor(.white)
@@ -54,6 +91,8 @@ struct RecipeDetailsView: View {
 
                 }
             }
+        }.alert(isPresented: $showError) {
+            Alert(title: Text("Erreur"), message: Text(vcError), dismissButton: .default(Text("Ok")))
         }
     }
 }
@@ -61,7 +100,7 @@ struct RecipeDetailsView: View {
 struct RecipeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RecipeDetailsView(recipe: .defaultRecipe)
+            RecipeDetailsView(recipe: Recipe.defaultRecipe.recipe)
         }
     }
 }

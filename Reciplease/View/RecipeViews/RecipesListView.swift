@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipesListView: View {
-    @Binding var recipes : [Recipe]
+    var recipes : [Recipe]
     
     var body: some View {
         ZStack {
@@ -18,9 +18,9 @@ struct RecipesListView: View {
                     VStack {
                         ForEach(recipes, id: \.self) { recipe in
                             NavigationLink {
-                                RecipeDetailsView(recipe: recipe)
+                                RecipeDetailsView(recipe: recipe.recipe)
                             } label: {
-                                RecipeRow(recipe: recipe)
+                                RecipeRow(recipe: recipe.recipe)
                             }
 
                         }
@@ -42,7 +42,7 @@ struct RecipesListView: View {
 struct RecipesListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RecipesListView( recipes: .constant([Recipe.defaultRecipe, Recipe.defaultRecipe, Recipe.defaultRecipe]))
+            RecipesListView(recipes: [Recipe.defaultRecipe, Recipe.defaultRecipe, Recipe.defaultRecipe])
         }
     }
 }
