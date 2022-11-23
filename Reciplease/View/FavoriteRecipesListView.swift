@@ -8,22 +8,14 @@
 import SwiftUI
 
 struct FavoriteRecipesListView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \CDRecipe.label, ascending: true)],
-        animation: .default)
-    private var cdRecipes: FetchedResults<CDRecipe>
-    @State var detailsViewIsPresented = false
-    @State private var recipes : [Recipe] = []
+    @State private var detailsViewIsPresented = false
+    @State private var favoriteRecipes : [Recipe] = []
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Color("bacgroundAppColor").edgesIgnoringSafeArea(.top)
-                RecipesListView(recipes: recipes)
-                    .onAppear(){
-                        getRecipes()
-                    }
+                RecipesListView(recipes: favoriteRecipes)
                     .toolbar {
                         ToolbarItem(placement: .principal) {
                             Text("Reciplease")
@@ -32,13 +24,9 @@ struct FavoriteRecipesListView: View {
                         }
                     }
             }
-        }
-    }
-    private func getRecipes(){
-        for recipe in cdRecipes {
-            let newRecipe = Recipe(label: recipe.label!, image: recipe.image!, source: recipe.source!, url: recipe.url!, ingredientLines: [recipe.ingredientLines!])
-            recipes.append(newRecipe)
-            
+            .onAppear() {
+                favoriteRecipes = FavoriteRecipe.shared.all
+            }
         }
     }
 }

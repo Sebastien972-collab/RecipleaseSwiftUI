@@ -33,10 +33,18 @@ struct Hit : Codable, Hashable {
     ]))
 }
 
-struct Recipe : Hashable, Codable {
+struct Recipe : Hashable, Codable, Equatable{
     let label : String
     let image : String
     let source : String
     let url : String
     let ingredientLines : [String]
+    
+    static func == (lhs: Recipe, rhs: Recipe) -> Bool {
+            return
+                lhs.label == rhs.label &&
+                lhs.source == rhs.source
+        }
+    
+    
 }

@@ -26,6 +26,7 @@ struct RecipesListView: View {
                         }
                     }
                 }
+                
                 .toolbar {
                     ToolbarItem(placement : .principal) {
                         Text("Reciplease")

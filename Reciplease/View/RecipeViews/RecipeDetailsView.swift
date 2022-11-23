@@ -9,10 +9,12 @@ import SwiftUI
 import CoreData
 struct RecipeDetailsView: View {
     var recipe : Recipe
-    @Environment(\.managedObjectContext) private var viewContext
+    let favoriteRecipe = FavoriteRecipe.shared
+    
     @State private var showDirectionView = false
-    @State private var vcError = ""
-    @State private var showError = false
+    @State private var errorMessage = ""
+    @State private var alertIsPresented = false
+    @State private var isFavorite = false
     
     var body: some View {
         ZStack {
@@ -23,7 +25,7 @@ struct RecipeDetailsView: View {
                         ZStack {
                             Image("image1")
                                 .resizable()
-                            .frame(maxWidth: .infinity, maxHeight: 300)
+                                .frame(maxWidth: .infinity, maxHeight: 300)
                             Text(recipe.label)
                                 .foregroundColor(.white)
                                 .font(.title)
@@ -43,56 +45,59 @@ struct RecipeDetailsView: View {
                         }
                         
                         Spacer()
+                        
                     }
+                    
                 })
-                Button {
+                
+                ContinueButtonView {
                     showDirectionView.toggle()
-                } label: {
-                    Text("Get direction")
-                        .padding()
                 }
-//                .navigationDestination(isPresented: $showDirectionView) {
-//                    SafariView(url: recipe.url)
-//                }
-
+                .padding()
+                //                .navigationDestination(isPresented: $showDirectionView) {
+                //                    SafariView(url: recipe.url)
+                //                }
             })
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("Reciplease")
-                        .font(.title)
-                        .foregroundColor(.white)
+                    RecipleaseTitle()
                 }
                 ToolbarItem(placement : .navigationBarTrailing) {
                     Button {
-                    let recipeFav = CDRecipe(context: viewContext)
-                        recipeFav.url = recipe.url
-                        recipeFav.source = recipe.source
-                        recipeFav.image = recipe.image
-                        recipeFav.label = recipe.label
-                        var ingredientsString = ""
-                        for (index, ingredient) in recipe.ingredientLines.enumerated() {
-                            if index == 0 {
-                                ingredientsString += ingredient
-                            }
-                            ingredientsString += ",\(ingredient) "
-                        }
-                        recipeFav.ingredientLines = ingredientsString
-                        
-                        do {
-                            try viewContext.save()
-                        } catch {
-                            vcError = error.localizedDescription
-                            showError.toggle()
-                        }
+                        saveRecipe()
                     } label: {
                         Image(systemName: "star.fill")
-                            .foregroundColor(.white)
+                            .foregroundColor(isFavorite ? .yellow : .white)
                     }
-
+                    
                 }
             }
-        }.alert(isPresented: $showError) {
-            Alert(title: Text("Erreur"), message: Text(vcError), dismissButton: .default(Text("Ok")))
+            .onAppear() {
+                isFavorite = favoriteRecipe.checkElementIsFavorite(recipe: recipe)
+            }
+        }.alert(isPresented: $alertIsPresented) {
+            Alert(title: Text("Erreur"), message: Text(errorMessage), dismissButton: .default(Text("Ok")))
+        }
+    }
+    private func saveRecipe() {
+        switch favoriteRecipe.checkElementIsFavorite(recipe: recipe) {
+        case true :
+            do {
+                try favoriteRecipe.removeElementInFavorite(recipe: recipe)
+                isFavorite = false
+            } catch {
+                errorMessage = error.localizedDescription
+                alertIsPresented.toggle()
+            }
+            
+        case false :
+            do {
+                try favoriteRecipe.addNewRecipeFavorite(recipe: recipe)
+                isFavorite = true
+            } catch {
+                errorMessage = error.localizedDescription
+                alertIsPresented.toggle()
+            }
         }
     }
 }

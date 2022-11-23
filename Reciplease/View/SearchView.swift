@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State var ingredient : String = ""
+    @State private var ingredient : String = ""
     @State private var ingredients : [String] = []
     @State private var alertMessage = ""
     @State private var alertIsPresented = false
@@ -68,40 +68,7 @@ struct SearchView: View {
                         }
                     }
                     Spacer()
-                    Button {
-                        guard !ingredients.isEmpty else {
-                            alertMessage = "Oups... Vous n'avez pas entrer d'ingrédients."
-                            alertIsPresented.toggle()
-                            return
-                        }
-                        RecipleaseService.shared.getRecepleases(ingredients: ingredients) { success, recipes, error in
-                            guard success, let recipes = recipes, error == nil else {
-                                fieldIsFocused = false
-                                alertMessage = error?.localizedDescription ?? "Unkonow Error"
-                                alertIsPresented.toggle()
-                                return
-                            }
-                            fieldIsFocused = false
-                            for recipe in recipes {
-                                self.recipes.append(recipe.recipe)
-                            }
-                           
-                            guard !self.recipes.isEmpty else {
-                                alertMessage = "Oups... Nous n'avons pas trouver de recettes."
-                                alertIsPresented.toggle()
-                                return
-                            }
-                            showSearchView.toggle()
-                            print(recipes.count)
-                            
-                        }
-                    } label: {
-                        Text("Search for recipe")
-                            .foregroundColor(.white)
-                            .frame(maxWidth: 300, maxHeight: 60)
-                            .background(Color("greenApp"))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                    }
+                    ContinueButtonView(action: getRecipes)
                     .navigationDestination(isPresented: $showSearchView, destination: {
                         RecipesListView(recipes: recipes)
                     })
@@ -110,9 +77,7 @@ struct SearchView: View {
                 }
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
-                        Text("Reciplease")
-                            .font(.title)
-                            .foregroundColor(.white)
+                        RecipleaseTitle()
                     }
                 })
                 
@@ -152,6 +117,34 @@ struct SearchView: View {
         print("Tapped")
         
     }
+    func getRecipes() {
+        guard !ingredients.isEmpty else {
+            alertMessage = "Oups... Vous n'avez pas entrer d'ingrédients."
+            alertIsPresented.toggle()
+            return
+        }
+        RecipleaseService.shared.getRecepleases(ingredients: ingredients) { success, recipes, error in
+            guard success, let recipes = recipes, error == nil else {
+                fieldIsFocused = false
+                alertMessage = error?.localizedDescription ?? "Unkonow Error"
+                alertIsPresented.toggle()
+                return
+            }
+            fieldIsFocused = false
+            for recipe in recipes {
+                self.recipes.append(recipe.recipe)
+            }
+           
+            guard !self.recipes.isEmpty else {
+                alertMessage = "Oups... Nous n'avons pas trouver de recettes."
+                alertIsPresented.toggle()
+                return
+            }
+            showSearchView.toggle()
+            print(recipes.count)
+            
+        }
+    }
     private func clearWord(_ word : String) -> String {
         var newWord : [Character] = []
         for letter in word {
@@ -173,6 +166,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(ingredient: "Apple, Lemon, Cheese")
+        SearchView()
     }
 }
