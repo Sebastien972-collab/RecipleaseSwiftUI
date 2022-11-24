@@ -14,7 +14,7 @@ class RecipleaseService {
     private init(){}
     
     func getRecepleases(ingredients : [String], callback: @escaping (Bool, [Hit]?, Error?) -> Void)  {
-        let ingredientsForUrl = clearForUrl(ingredients)
+        let ingredientsForUrl = Utils.clearForUrl(ingredients)
         let baseUrl = URL(string: "https://api.edamam.com/search?q=\(ingredientsForUrl.utf8)&app_id=1f5b21c8&app_key=663f1a5a754bd316789a05c2ff662c60&from=0&to=10")!
         AF.request(baseUrl).responseData { data in
             guard let data = data.data else {
@@ -31,21 +31,7 @@ class RecipleaseService {
                 callback(false, nil, error)
             }
         }
-        
-        //
     }
-    //
-    func clearForUrl(_ ingredients : [String]) -> String {
-        var text = ""
-        for ingredient in ingredients {
-            let ingredientToUrl = ingredient.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-            text +=  ingredientToUrl
-            
-        }
-        print(text.utf8)
-        return text
-    }
-    
 }
 
 struct StaticRecipleases : Hashable {

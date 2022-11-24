@@ -9,8 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var ingredient : String = ""
-    @State private var ingredients : [String] = []
-    @State private var alertMessage = ""
+    @State private var searchError : Error = SearchError.uknowError
     @State private var alertIsPresented = false
     @State private var recipes : [Recipe] = []
     @State private var showSearchView = false
@@ -26,7 +25,15 @@ struct SearchView: View {
                         HStack {
                             TextField("Lemon, Cheese, Sausages...", text: $ingredient)
                                 .focused($fieldIsFocused)
-                            Button(action: addIngredient) {
+                            Button {
+                                do {
+                                    try search.addIngredients(ingredient)
+                                } catch {
+                                    searchError = error
+                                    alertIsPresented.toggle()
+                                }
+                                ingredient.removeAll()
+                            } label: {
                                 Text("Add")
                                     .foregroundColor(.white)
                                     .bold()
@@ -47,7 +54,7 @@ struct SearchView: View {
                                 .foregroundColor(.white)
                             Spacer()
                             Button {
-                                ingredients.removeAll()
+                                search.clearIngredients()
                             } label: {
                                 Text("Clear")
                                     .foregroundColor(.white)
@@ -55,12 +62,12 @@ struct SearchView: View {
                                     .padding()
                                     .background(Color.gray)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    
+                                
                             }
-
+                            
                         }
                         .padding()
-                        ForEach(ingredients, id : \.self) { ingredient in
+                        ForEach(search.ingredients, id : \.self) { ingredient in
                             Text("- \(ingredient)")
                                 .font(.title3)
                                 .foregroundColor(.white)
@@ -69,11 +76,11 @@ struct SearchView: View {
                     }
                     Spacer()
                     ContinueButtonView(action: getRecipes)
-                    .navigationDestination(isPresented: $showSearchView, destination: {
-                        RecipesListView(recipes: recipes)
-                    })
-                    .padding()
-
+                        .navigationDestination(isPresented: $showSearchView, destination: {
+                            RecipesListView(recipes: recipes)
+                        })
+                        .padding()
+                    
                 }
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
@@ -86,44 +93,25 @@ struct SearchView: View {
                 fieldIsFocused = false
             }
             .alert(isPresented: $alertIsPresented) {
-                    Alert(
-                        title: Text("Error"),
-                        message: Text(alertMessage),
-                        dismissButton: .default(Text("Ok"))
-                    )
-                }
+                Alert(
+                    title: Text("Error"),
+                    message: Text(searchError.localizedDescription),
+                    dismissButton: .default(Text("Ok"))
+                )
+            }
         }
         
     }
-    private func addIngredient() {
-        guard  !ingredient.isEmpty else {
-            alertMessage = "Oups... Ce champ ne peut pas être vide"
+    private func getRecipes() {
+        guard !search.ingredients.isEmpty else {
+            searchError = SearchError.ingredientFieldEmpty
             alertIsPresented.toggle()
             return
         }
-        if Utils.haveAnumber(value: ingredient) {
-            alertMessage = "Charactère non pris en charge."
-            alertIsPresented.toggle()
-        }
-        else if !ingredients.contains(Utils.clearWord(ingredient)) {
-            ingredients.append(Utils.clearWord(ingredient))
-
-        }
-        ingredients += Utils.splitString(ingredient, with: ",")
-        ingredient.removeAll()
-        print("Tapped")
-        
-    }
-    func getRecipes() {
-        guard !ingredients.isEmpty else {
-            alertMessage = "Oups... Vous n'avez pas entrer d'ingrédients."
-            alertIsPresented.toggle()
-            return
-        }
-        RecipleaseService.shared.getRecepleases(ingredients: ingredients) { success, recipes, error in
+        RecipleaseService.shared.getRecepleases(ingredients: search.ingredients) { success, recipes, error in
             guard success, let recipes = recipes, error == nil else {
                 fieldIsFocused = false
-                alertMessage = error?.localizedDescription ?? "Unkonow Error"
+                searchError = error ?? SearchError.uknowError
                 alertIsPresented.toggle()
                 return
             }
@@ -131,9 +119,9 @@ struct SearchView: View {
             for recipe in recipes {
                 self.recipes.append(recipe.recipe)
             }
-           
+            
             guard !self.recipes.isEmpty else {
-                alertMessage = "Oups... Nous n'avons pas trouver de recettes."
+                searchError = SearchError.noRecipeFound
                 alertIsPresented.toggle()
                 return
             }

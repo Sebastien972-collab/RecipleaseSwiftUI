@@ -9,19 +9,22 @@ import Foundation
 
 class Search: ObservableObject {
    @Published var ingredients : [String] = []
+    @Published var recipes : [Recipe] = []
     
     func addIngredients(_ ingredients : String) throws {
         guard  !ingredients.isEmpty else {
             throw SearchError.ingredientFieldEmpty
         }
-        if Utils.haveAnumber(value: ingredients) {
+        guard !Utils.haveAnumber(value: ingredients) else {
             throw SearchError.invalidCharacter
         }
-        else if !self.ingredients.contains(Utils.clearWord(ingredients)) {
-            self.ingredients += Utils.splitString(ingredients, with: ",")
-
-        }
         
+        let newIngredients = Utils.splitString(ingredients, with: ",")
+        for newIngredient in newIngredients {
+            if !self.ingredients.contains(newIngredient) {
+                self.ingredients.append(newIngredient)
+            }
+        }
     }
     func clearIngredients() {
         ingredients.removeAll()

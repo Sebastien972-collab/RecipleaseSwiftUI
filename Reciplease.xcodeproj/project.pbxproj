@@ -22,6 +22,7 @@
 		CF885C2D292E33C900A18954 /* Recipe.json in Resources */ = {isa = PBXBuildFile; fileRef = CF885C2C292E33C900A18954 /* Recipe.json */; };
 		CF885C31292F188D00A18954 /* SearchErrorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF885C30292F188D00A18954 /* SearchErrorTest.swift */; };
 		CF885C34292F1F3300A18954 /* SearchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF885C33292F1F3300A18954 /* SearchTest.swift */; };
+		CF885C36292F340B00A18954 /* RecipeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF885C35292F340B00A18954 /* RecipeSession.swift */; };
 		CFE1FC0029188C2400D01CA0 /* RecipleaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FBFF29188C2400D01CA0 /* RecipleaseApp.swift */; };
 		CFE1FC0229188C2400D01CA0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FC0129188C2400D01CA0 /* Persistence.swift */; };
 		CFE1FC0529188C2400D01CA0 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FC0329188C2400D01CA0 /* Reciplease.xcdatamodeld */; };
@@ -64,6 +65,7 @@
 		CF885C2C292E33C900A18954 /* Recipe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Recipe.json; sourceTree = "<group>"; };
 		CF885C30292F188D00A18954 /* SearchErrorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchErrorTest.swift; sourceTree = "<group>"; };
 		CF885C33292F1F3300A18954 /* SearchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTest.swift; sourceTree = "<group>"; };
+		CF885C35292F340B00A18954 /* RecipeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSession.swift; sourceTree = "<group>"; };
 		CFE1FBFC29188C2400D01CA0 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE1FBFF29188C2400D01CA0 /* RecipleaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseApp.swift; sourceTree = "<group>"; };
 		CFE1FC0129188C2400D01CA0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				CF66E872292BEF95003A4CC6 /* Recipe.swift */,
 				CFE1FC392918B98400D01CA0 /* RecipesService.swift */,
+				CF885C35292F340B00A18954 /* RecipeSession.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				CF885C2B292E292E00A18954 /* Search.swift in Sources */,
 				CF66E873292BEF95003A4CC6 /* Recipe.swift in Sources */,
 				CFE1FC0729188C2400D01CA0 /* ContentView.swift in Sources */,
+				CF885C36292F340B00A18954 /* RecipeSession.swift in Sources */,
 				CFE1FC352918A20C00D01CA0 /* IngredientManager.swift in Sources */,
 				CF885C24292E1EA700A18954 /* IngredientView.swift in Sources */,
 				CFE1FC0229188C2400D01CA0 /* Persistence.swift in Sources */,
