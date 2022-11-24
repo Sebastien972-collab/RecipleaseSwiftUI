@@ -20,35 +20,22 @@ struct RecipeDetailsView: View {
         ZStack {
             Color.backgroundApp.edgesIgnoringSafeArea(.top)
             VStack(content: {
-                ScrollView(content: {
-                    VStack(alignment : .leading) {
-                        ZStack {
-                            Image("image1")
-                                .resizable()
-                                .frame(maxWidth: .infinity, maxHeight: 300)
-                            Text(recipe.label)
-                                .foregroundColor(.white)
-                                .font(.title)
-                                .offset(y : 100)
-                        }
-                        
-                        Text("Ingredients ")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                            .padding(.horizontal)
-                        
-                        ForEach(recipe.ingredientLines, id: \.self) { ingredient in
-                            Text("- \(ingredient)")
-                                .font(.title3)
-                                .foregroundColor(.white)
-                                .padding(.horizontal)
-                        }
-                        
-                        Spacer()
-                        
+                ZStack {
+                    AsyncImage(url: URL(string: recipe.image)) { image in
+                        image.resizable()
+                            .resizable()
+                            .frame(maxWidth: .infinity, maxHeight: 300)
+                    } placeholder: {
+                        ProgressView()
                     }
-                    
-                })
+                    Text(recipe.label)
+                        .foregroundColor(.white)
+                        .font(.title)
+                        .offset(y : 100)
+                }
+                
+                IngredientView(ingredients: recipe.ingredientLines)
+                
                 
                 ContinueButtonView {
                     showDirectionView.toggle()
@@ -75,7 +62,8 @@ struct RecipeDetailsView: View {
             .onAppear() {
                 isFavorite = favoriteRecipe.checkElementIsFavorite(recipe: recipe)
             }
-        }.alert(isPresented: $alertIsPresented) {
+        }
+        .alert(isPresented: $alertIsPresented) {
             Alert(title: Text("Erreur"), message: Text(errorMessage), dismissButton: .default(Text("Ok")))
         }
     }

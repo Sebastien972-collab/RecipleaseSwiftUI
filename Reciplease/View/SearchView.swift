@@ -15,7 +15,7 @@ struct SearchView: View {
     @State private var recipes : [Recipe] = []
     @State private var showSearchView = false
     @FocusState private var fieldIsFocused : Bool
-    
+    @ObservedObject private var search = Search()
     var body: some View {
         NavigationStack{
             ZStack {
@@ -101,18 +101,15 @@ struct SearchView: View {
             alertIsPresented.toggle()
             return
         }
-        let ingredientsToAdd = ingredient.split(separator: ",")
-        for newIngredient in ingredientsToAdd {
-            print(newIngredient)
-            let value = String(newIngredient)
-            if haveAnumber(value: value) {
-                alertMessage = "Charactère non pris en charge."
-            }
-            else if !ingredients.contains(clearWord(value)) {
-                ingredients.append(clearWord(value))
-
-            }
+        if Utils.haveAnumber(value: ingredient) {
+            alertMessage = "Charactère non pris en charge."
+            alertIsPresented.toggle()
         }
+        else if !ingredients.contains(Utils.clearWord(ingredient)) {
+            ingredients.append(Utils.clearWord(ingredient))
+
+        }
+        ingredients += Utils.splitString(ingredient, with: ",")
         ingredient.removeAll()
         print("Tapped")
         
@@ -145,23 +142,7 @@ struct SearchView: View {
             
         }
     }
-    private func clearWord(_ word : String) -> String {
-        var newWord : [Character] = []
-        for letter in word {
-            if letter.isLetter {
-                newWord.append(letter)
-            }
-        }
-        return String(newWord)
-    }
-    private func haveAnumber(value : String) -> Bool {
-        for character in value {
-            if character.isNumber {
-                return true
-            }
-        }
-        return false
-    }
+    
 }
 
 struct SearchView_Previews: PreviewProvider {

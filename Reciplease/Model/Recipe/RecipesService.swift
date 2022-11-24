@@ -16,9 +16,6 @@ class RecipleaseService {
     func getRecepleases(ingredients : [String], callback: @escaping (Bool, [Hit]?, Error?) -> Void)  {
         let ingredientsForUrl = clearForUrl(ingredients)
         let baseUrl = URL(string: "https://api.edamam.com/search?q=\(ingredientsForUrl.utf8)&app_id=1f5b21c8&app_key=663f1a5a754bd316789a05c2ff662c60&from=0&to=10")!
-        //        AF.request(baseUrl).response { response in
-        //
-        
         AF.request(baseUrl).responseData { data in
             guard let data = data.data else {
                 return callback(false, nil, data.error)

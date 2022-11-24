@@ -28,7 +28,7 @@ class FavoriteRecipe: NSManagedObject {
     var all : [Recipe] {
         var favoriteRecipes : [Recipe] = []
         for recipe in cdRecipes {
-            let newRecipe = Recipe(label: recipe.label!, image: recipe.image!, source: recipe.source!, url: recipe.url!, ingredientLines: [recipe.ingredientLines!])
+            let newRecipe = Recipe(label: recipe.label!, image: recipe.image!, source: recipe.source!, url: recipe.url!, ingredientLines: Utils.splitString(recipe.ingredientLines!, with: ","))
             favoriteRecipes.append(newRecipe)
         }
         return favoriteRecipes
@@ -57,7 +57,6 @@ class FavoriteRecipe: NSManagedObject {
     }
     
     func addNewRecipeFavorite(recipe : Recipe) throws {
-        
         let recipeFav = CDRecipe(context: viewContext)
         recipeFav.url = recipe.url
         recipeFav.source = recipe.source
@@ -77,8 +76,5 @@ class FavoriteRecipe: NSManagedObject {
         } catch {
             throw error
         }
-    }
-    func removeAllRecipe() throws {
-//                                                                                                           <w
     }
 }
