@@ -8,9 +8,9 @@
 import Foundation
 import Alamofire
 
-class RecipeSession {
-    
-    func session(url: URLConvertible, completionHandler: @escaping () -> Void) {
-        AF.request(url).responseData { response in completionHandler(response) }
-    }
-}
+//class RecipeSession {
+//    
+//    func session(url: URLConvertible, completionHandler: @escaping () -> Void) {
+//        AF.request(url).responseData { response in completionHandler(response) }
+//    }
+//}
