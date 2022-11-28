@@ -68,6 +68,6 @@ struct RecipeRow: View {
 
 struct RecipeRow_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeRow(recipe: Hit.defaultRecipe.recipe)
+        RecipeRow(recipe: Hit.defaultHits.recipe)
     }
 }

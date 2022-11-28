@@ -44,4 +44,9 @@ final class SearchTest: XCTestCase {
             XCTAssertNoThrow(self)
         }
     }
+    func testHitToRecipe() {
+        let recipes = newSearch.hitsToRecipe([.defaultHits])
+        XCTAssertFalse(recipes.isEmpty)
+           
+    }
 }

@@ -46,6 +46,6 @@ struct LabelRecipeRowView: View {
 
 struct LabelRecipeRowView_Previews: PreviewProvider {
     static var previews: some View {
-        LabelRecipeRowView(recipe: .defaultRecipe)
+        LabelRecipeRowView(recipe: .defaultHits)
     }
 }

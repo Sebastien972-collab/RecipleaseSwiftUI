@@ -93,7 +93,7 @@ struct RecipeDetailsView: View {
 struct RecipeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RecipeDetailsView(recipe: Hit.defaultRecipe.recipe)
+            RecipeDetailsView(recipe: Hit.defaultHits.recipe)
         }
     }
 }

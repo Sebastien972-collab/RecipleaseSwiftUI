@@ -103,24 +103,24 @@ struct SearchView: View {
         
     }
     private func getRecipes() {
-        guard !search.ingredients.isEmpty else {
+        guard search.ingredients.isNotEmpty else {
             searchError = SearchError.ingredientFieldEmpty
             alertIsPresented.toggle()
             return
         }
-        RecipleaseService.shared.getRecepleases(ingredients: search.ingredients) { success, recipes, error in
-            guard success, let recipes = recipes, error == nil else {
+        RecipleaseService.shared.getRecepleases(ingredients: search.ingredients) { success, hits, error in
+            for ingredient in search.ingredients {
+                print(ingredient)
+            }
+            guard success, let hits = hits, error == nil else {
                 fieldIsFocused = false
                 searchError = error ?? SearchError.uknowError
                 alertIsPresented.toggle()
                 return
             }
             fieldIsFocused = false
-            for recipe in recipes {
-                self.recipes.append(recipe.recipe)
-            }
-            
-            guard !self.recipes.isEmpty else {
+            self.recipes = search.hitsToRecipe(hits)
+            guard self.recipes.isNotEmpty else {
                 searchError = SearchError.noRecipeFound
                 alertIsPresented.toggle()
                 return
