@@ -22,7 +22,15 @@ struct Recipe : Hashable, Codable, Equatable{
     let source : String
     let url : String
     let ingredientLines : [String]
-    
+    let totalTime : Int
+    func time() -> String {
+        if totalTime == 0 {
+            return "Unknow"
+        }
+        let hours = totalTime / 60
+        let minute = totalTime - hours * 60
+        return "\(hours)h\(minute) "
+    }
     static func == (lhs: Recipe, rhs: Recipe) -> Bool {
             return
                 lhs.label == rhs.label &&
@@ -46,7 +54,7 @@ struct Recipe : Hashable, Codable, Equatable{
         "Lupine-Free",
         "Mollusk-Free",
         "Alcohol-Free"
-    ])
+    ], totalTime: 120)
     
     
 }

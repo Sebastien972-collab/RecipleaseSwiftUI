@@ -24,9 +24,8 @@ class RecipleaseService {
         
         recipeSession.session(url: baseUrl) { result in
             switch result {
-            case .success:
+            case .success (let data):
                 do {
-                    let data = try result.get()
                     let decoder = JSONDecoder()
                     let product = try decoder.decode(RecipesSearch.self, from: data)
                     callback(true, product.hits, nil)

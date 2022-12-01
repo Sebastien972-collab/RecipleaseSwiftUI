@@ -13,6 +13,7 @@ struct ContinueButtonView: View {
     var body: some View {
         Button(action: action) {
             Text("Search for recipe")
+                .accessibilityLabel("Appuyer pour continuer")
                 .foregroundColor(.white)
                 .frame(maxWidth: 300, maxHeight: 60)
                 .background(Color("greenApp"))

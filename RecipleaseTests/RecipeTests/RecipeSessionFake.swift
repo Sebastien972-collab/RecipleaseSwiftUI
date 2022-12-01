@@ -10,14 +10,14 @@ import Alamofire
 @testable import Reciplease
 
 class RecipeSessionFake: RecipeSession {
-    private let fakeResponse : FakeResponse
+    private let fakeResponse : Result<Data, AFError>
     
-    init(fakeResponse: FakeResponse) {
+    init(fakeResponse: Result<Data, AFError>) {
         self.fakeResponse = fakeResponse
     }
     
     override func session(url: URLConvertible, callback: @escaping (Result<Data, AFError>) -> Void) {
-        callback(fakeResponse.result) 
+        callback(fakeResponse)
     }
 }
 

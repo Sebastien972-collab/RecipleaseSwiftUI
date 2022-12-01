@@ -25,7 +25,11 @@ class FakeResponseData {
             let bundle = Bundle(for: FakeResponseData.self)
             let url = bundle.url(forResource: "Recipe", withExtension: "json")
             let data = try! Data(contentsOf: url!)
+            print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>")
+            print("Data et passer \(data.count)")
+            
             return data
         }
+    
     static let incorrectData = "Erreur".data(using: .utf8)!
 }

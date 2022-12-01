@@ -28,7 +28,7 @@ class FavoriteRecipe: NSManagedObject {
     var all : [Recipe] {
         var favoriteRecipes : [Recipe] = []
         for recipe in cdRecipes {
-            let newRecipe = Recipe(label: recipe.label!, image: recipe.image!, source: recipe.source!, url: recipe.url!, ingredientLines: Utils.splitString(recipe.ingredientLines!, with: ","))
+            let newRecipe = Recipe(label: recipe.label!, image: recipe.image!, source: recipe.source!, url: recipe.url!, ingredientLines: Utils.splitString(recipe.ingredientLines!, with: ","), totalTime: 120)
             favoriteRecipes.append(newRecipe)
         }
         return favoriteRecipes
@@ -42,7 +42,7 @@ class FavoriteRecipe: NSManagedObject {
         }
         return false
     }
-    func removeElementInFavorite(recipe recipeToRemove : Recipe) throws {
+    private func removeElementInFavorite(recipe recipeToRemove : Recipe) throws {
         for (index ,recipe) in all.enumerated() {
             if recipe == recipeToRemove {
                 viewContext.delete(FavoriteRecipe.shared.cdRecipes[index])
@@ -56,7 +56,7 @@ class FavoriteRecipe: NSManagedObject {
         }
     }
     
-    func addNewRecipeFavorite(recipe : Recipe) throws {
+    private func addNewRecipeFavorite(recipe : Recipe) throws {
         let recipeFav = CDRecipe(context: viewContext)
         recipeFav.url = recipe.url
         recipeFav.source = recipe.source
@@ -75,6 +75,26 @@ class FavoriteRecipe: NSManagedObject {
             try viewContext.save()
         } catch {
             throw error
+        }
+    }
+    
+    func saveRecipe(recipe : Recipe) throws {
+        switch checkElementIsFavorite(recipe: recipe) {
+        case true :
+            do {
+                try removeElementInFavorite(recipe: recipe)
+                
+            } catch {
+                throw error
+            }
+            
+        case false :
+            do {
+                try addNewRecipeFavorite(recipe: recipe)
+                
+            } catch {
+                throw error
+            }
         }
     }
 }

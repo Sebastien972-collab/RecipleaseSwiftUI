@@ -38,10 +38,13 @@
 		CFE1FC3A2918B98400D01CA0 /* RecipesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FC392918B98400D01CA0 /* RecipesService.swift */; };
 		CFE1FC3D2918BA0D00D01CA0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CFE1FC3C2918BA0D00D01CA0 /* Alamofire */; };
 		CFE600D62934AC9300E86FB4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE600D52934AC9300E86FB4 /* Extension.swift */; };
+		CFE600D82934C08C00E86FB4 /* RecipeIndicationsLabeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE600D72934C08C00E86FB4 /* RecipeIndicationsLabeView.swift */; };
+		CFE600DA293506D100E86FB4 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE600D9293506D100E86FB4 /* SafariView.swift */; };
 		CFE80FE62918F84F00BFE299 /* LabelRecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE80FE52918F84F00BFE299 /* LabelRecipeRowView.swift */; };
 		CFE80FE82918F8D200BFE299 /* RecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE80FE72918F8D200BFE299 /* RecipeRowView.swift */; };
 		CFE80FEA2919040C00BFE299 /* RecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE80FE92919040C00BFE299 /* RecipeDetailsView.swift */; };
 		CFE80FEC291A296C00BFE299 /* LaunchScreenView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFE80FEB291A296C00BFE299 /* LaunchScreenView.storyboard */; };
+		CFEC95F62938E25200F0B903 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66E872292BEF95003A4CC6 /* Recipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +70,7 @@
 		CF885C25292E211400A18954 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CF885C27292E269200A18954 /* SearchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchError.swift; sourceTree = "<group>"; };
 		CF885C2A292E292E00A18954 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
-		CF885C2C292E33C900A18954 /* Recipe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Recipe.json; sourceTree = "<group>"; };
+		CF885C2C292E33C900A18954 /* Recipe.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = Recipe.json; sourceTree = "<group>"; };
 		CF885C30292F188D00A18954 /* SearchErrorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchErrorTest.swift; sourceTree = "<group>"; };
 		CF885C33292F1F3300A18954 /* SearchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTest.swift; sourceTree = "<group>"; };
 		CF885C35292F340B00A18954 /* RecipeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSession.swift; sourceTree = "<group>"; };
@@ -88,6 +91,8 @@
 		CFE1FC342918A20C00D01CA0 /* IngredientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientManager.swift; sourceTree = "<group>"; };
 		CFE1FC392918B98400D01CA0 /* RecipesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesService.swift; sourceTree = "<group>"; };
 		CFE600D52934AC9300E86FB4 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		CFE600D72934C08C00E86FB4 /* RecipeIndicationsLabeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIndicationsLabeView.swift; sourceTree = "<group>"; };
+		CFE600D9293506D100E86FB4 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		CFE80FE52918F84F00BFE299 /* LabelRecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelRecipeRowView.swift; sourceTree = "<group>"; };
 		CFE80FE72918F8D200BFE299 /* RecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRowView.swift; sourceTree = "<group>"; };
 		CFE80FE92919040C00BFE299 /* RecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView.swift; sourceTree = "<group>"; };
@@ -247,8 +252,8 @@
 				CF32E6F4292CAB8900C16B57 /* UtilsView */,
 				CFE1FC0629188C2400D01CA0 /* ContentView.swift */,
 				CFE1FC322918929600D01CA0 /* SearchView.swift */,
-				CF32E6F2292C00D400C16B57 /* FavoriteRecipesListView.swift */,
 				CFE1FC362918B89D00D01CA0 /* RecipeViews */,
+				CFE600D9293506D100E86FB4 /* SafariView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -268,10 +273,12 @@
 		CFE1FC362918B89D00D01CA0 /* RecipeViews */ = {
 			isa = PBXGroup;
 			children = (
+				CF32E6F2292C00D400C16B57 /* FavoriteRecipesListView.swift */,
 				CF862F962918D75E007EBA6A /* RecipesListView.swift */,
 				CFE80FE52918F84F00BFE299 /* LabelRecipeRowView.swift */,
 				CFE80FE72918F8D200BFE299 /* RecipeRowView.swift */,
 				CFE80FE92919040C00BFE299 /* RecipeDetailsView.swift */,
+				CFE600D72934C08C00E86FB4 /* RecipeIndicationsLabeView.swift */,
 			);
 			path = RecipeViews;
 			sourceTree = "<group>";
@@ -386,6 +393,8 @@
 			files = (
 				CFE80FEA2919040C00BFE299 /* RecipeDetailsView.swift in Sources */,
 				CFE1FC332918929600D01CA0 /* SearchView.swift in Sources */,
+				CFE600DA293506D100E86FB4 /* SafariView.swift in Sources */,
+				CFE600D82934C08C00E86FB4 /* RecipeIndicationsLabeView.swift in Sources */,
 				CF885C28292E269200A18954 /* SearchError.swift in Sources */,
 				CFE1FC0529188C2400D01CA0 /* Reciplease.xcdatamodeld in Sources */,
 				CFE80FE82918F8D200BFE299 /* RecipeRowView.swift in Sources */,
@@ -417,6 +426,7 @@
 			files = (
 				CF885C3D292F3F8300A18954 /* FakeResponse.swift in Sources */,
 				CF885C602930A37200A18954 /* RecipeTestCase.swift in Sources */,
+				CFEC95F62938E25200F0B903 /* Recipe.swift in Sources */,
 				CF885C31292F188D00A18954 /* SearchErrorTest.swift in Sources */,
 				CF885C3B292F3C8900A18954 /* RecipeSessionFake.swift in Sources */,
 				CF885C34292F1F3300A18954 /* SearchTest.swift in Sources */,

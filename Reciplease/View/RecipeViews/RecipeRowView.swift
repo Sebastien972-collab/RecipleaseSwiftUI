@@ -13,57 +13,50 @@ struct RecipeRow: View {
         ZStack {
             AsyncImage(url: URL(string: recipe.image)) { image in
                 image.resizable()
-                    .resizable()
-                    .scaledToFill()
-                    .frame(maxWidth: .infinity, maxHeight: 200)
             } placeholder: {
                 ProgressView()
             }
-            VStack(alignment : .leading) {
+            .accessibilityHidden(true)
+            
+            VStack {
                 HStack {
                     Spacer()
-                    
-                    VStack(alignment: .leading, spacing: 10) {
-                        Label("2, 5K", systemImage: "hand.thumbsup")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                        Label("3 m", systemImage: "clock.arrow.circlepath")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                    }
-                    .frame(maxWidth: 100, maxHeight: 60)
-                    .background(Color("bacgroundAppColor"))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding()
+                    RecipeIndicationsLabeView(likes: 240, time: "recipe.time()")
+                        .padding()
                 }
                 Spacer()
-                VStack(spacing : 10) {
-                    Text(recipe.label)
-                        .font(.title2)
-                        .foregroundColor(.white)
-                        .bold()
-                    Text(getIngredients())
-                        .foregroundColor(.white)
-                        .lineLimit(0)
-                        .padding(.bottom)
-                    
-                    
-                }
+                Text(recipe.label)
+                    .accessibilityLabel(Text("Nom de recette \(recipe.label)"))
+                    .foregroundColor(.white)
+                    .font(.title)
+                    .bold()
+                
             }
+            
+            
+
         }
-        .clipped()
-        .frame(maxWidth: .infinity, maxHeight: 200)
-        .border(.black, width: 2)
+        .frame(maxWidth: .infinity, maxHeight: 300)
+        .clipShape(RoundedRectangle(cornerRadius: 25))
+        .overlay(RoundedRectangle(cornerRadius: 25)
+            .stroke(Color.white, lineWidth: 2)
+        )
+        .padding(.horizontal)
+        
         
     }
+    
     private func getIngredients() -> String {
         var  ingredients = ""
         
-        for ingredient in recipe.ingredientLines {
-            ingredients = ingredients + ", \(ingredient)"
+        for (index, ingredient) in recipe.ingredientLines.enumerated() {
+            if index > 0 {
+                ingredients = ingredients + ", \(ingredient)"
+            }
         }
         return ingredients
     }
+    
 }
 
 struct RecipeRow_Previews: PreviewProvider {

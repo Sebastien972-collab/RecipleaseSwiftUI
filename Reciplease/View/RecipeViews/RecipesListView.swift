@@ -12,29 +12,24 @@ struct RecipesListView: View {
     
     var body: some View {
         ZStack {
-            Color.backgroundApp.edgesIgnoringSafeArea(.top)
-            VStack {
-                ScrollView {
-                    VStack {
-                        ForEach(recipes, id: \.self) { recipe in
-                            NavigationLink {
-                                RecipeDetailsView(recipe: recipe)
-                            } label: {
-                                RecipeRow(recipe: recipe)
-                            }
-
+            Color("bacgroundAppColor").edgesIgnoringSafeArea(.top)
+            ScrollView {
+                VStack {
+                    ForEach(recipes, id: \.self) { recipe in
+                        NavigationLink {
+                            RecipeDetailsView(recipe: recipe)
+                        } label: {
+                            RecipeRow(recipe: recipe)
                         }
+
                     }
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement : .principal) {
+                    RecipleaseTitle()
                 }
                 
-                .toolbar {
-                    ToolbarItem(placement : .principal) {
-                        Text("Reciplease")
-                            .font(.title)
-                            .foregroundColor(.white)
-                    }
-                    
-                }
             }
         }
     }

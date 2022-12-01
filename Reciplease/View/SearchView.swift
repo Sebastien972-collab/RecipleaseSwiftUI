@@ -15,6 +15,7 @@ struct SearchView: View {
     @State private var showSearchView = false
     @FocusState private var fieldIsFocused : Bool
     @ObservedObject private var search = Search()
+    
     var body: some View {
         NavigationStack{
             ZStack {
@@ -24,7 +25,10 @@ struct SearchView: View {
                         Text("What's in your fridge ? ")
                         HStack {
                             TextField("Lemon, Cheese, Sausages...", text: $ingredient)
+                                .accessibilityLabel(Text("Entrez vos ingredient"))
                                 .focused($fieldIsFocused)
+                                
+                                
                             Button {
                                 do {
                                     try search.addIngredients(ingredient)
@@ -35,6 +39,7 @@ struct SearchView: View {
                                 ingredient.removeAll()
                             } label: {
                                 Text("Add")
+                                    .accessibilityLabel(Text("Appuyez pour ajouter un élément"))
                                     .foregroundColor(.white)
                                     .bold()
                                     .padding()
@@ -76,9 +81,11 @@ struct SearchView: View {
                     }
                     Spacer()
                     ContinueButtonView(action: getRecipes)
+                        
                         .navigationDestination(isPresented: $showSearchView, destination: {
                             RecipesListView(recipes: recipes)
                         })
+                        
                         .padding()
                     
                 }
@@ -130,7 +137,6 @@ struct SearchView: View {
             
         }
     }
-    
 }
 
 struct SearchView_Previews: PreviewProvider {
