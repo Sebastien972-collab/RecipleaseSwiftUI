@@ -9,12 +9,11 @@ import SwiftUI
 
 struct RecipeIndicationsLabeView: View {
     
-    let likes : Int
     let time : String
     
     var body: some View {
         VStack(alignment : .leading, spacing: 8) {
-            Label("\(likes)", systemImage: "hand.thumbsup.fill")
+            Label("", systemImage: "hand.thumbsup.fill")
             Label(time , systemImage: "timer.circle.fill")
         }
         .accessibilityLabel(Text("Temps de cuisson \(time)"))
@@ -29,6 +28,6 @@ struct RecipeIndicationsLabeView: View {
 
 struct RecipeIndicationsLabeView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeIndicationsLabeView(likes: 240, time: "1H30")
+        RecipeIndicationsLabeView(time: "1H30")
     }
 }

@@ -14,7 +14,7 @@ struct FavoriteRecipesListView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color("bacgroundAppColor").edgesIgnoringSafeArea(.top)
+                Color.backgroundApp.edgesIgnoringSafeArea(.top)
                 RecipesListView(recipes: favoriteRecipes)
                     .toolbar {
                         ToolbarItem(placement: .principal) {

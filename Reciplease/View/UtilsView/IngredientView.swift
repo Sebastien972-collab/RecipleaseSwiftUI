@@ -35,7 +35,7 @@ struct IngredientView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color("bacgroundAppColor").edgesIgnoringSafeArea(.all)
-            IngredientView(ingredients: Recipe.defaultRecipe.ingredientLines)
+            IngredientView(ingredients: Recipe.preview.ingredientLines)
         }
     }
 }

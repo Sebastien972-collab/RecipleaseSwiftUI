@@ -10,6 +10,7 @@
 		CF32E6F3292C00D400C16B57 /* FavoriteRecipesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32E6F2292C00D400C16B57 /* FavoriteRecipesListView.swift */; };
 		CF32E6F6292CABA100C16B57 /* ContinueButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32E6F5292CABA100C16B57 /* ContinueButtonView.swift */; };
 		CF32E6F8292CB0CB00C16B57 /* RecipleaseTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32E6F7292CB0CB00C16B57 /* RecipleaseTitle.swift */; };
+		CF46C6B0293A1E6200185645 /* SJDKitToolBox in Frameworks */ = {isa = PBXBuildFile; productRef = CF46C6AF293A1E6200185645 /* SJDKitToolBox */; };
 		CF66E873292BEF95003A4CC6 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66E872292BEF95003A4CC6 /* Recipe.swift */; };
 		CF862F972918D75E007EBA6A /* RecipesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF862F962918D75E007EBA6A /* RecipesListView.swift */; };
 		CF862F992918DA1A007EBA6A /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF862F982918DA1A007EBA6A /* ExtensionColor.swift */; };
@@ -36,8 +37,6 @@
 		CFE1FC332918929600D01CA0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FC322918929600D01CA0 /* SearchView.swift */; };
 		CFE1FC352918A20C00D01CA0 /* IngredientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FC342918A20C00D01CA0 /* IngredientManager.swift */; };
 		CFE1FC3A2918B98400D01CA0 /* RecipesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FC392918B98400D01CA0 /* RecipesService.swift */; };
-		CFE1FC3D2918BA0D00D01CA0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CFE1FC3C2918BA0D00D01CA0 /* Alamofire */; };
-		CFE600D62934AC9300E86FB4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE600D52934AC9300E86FB4 /* Extension.swift */; };
 		CFE600D82934C08C00E86FB4 /* RecipeIndicationsLabeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE600D72934C08C00E86FB4 /* RecipeIndicationsLabeView.swift */; };
 		CFE600DA293506D100E86FB4 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE600D9293506D100E86FB4 /* SafariView.swift */; };
 		CFE80FE62918F84F00BFE299 /* LabelRecipeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE80FE52918F84F00BFE299 /* LabelRecipeRowView.swift */; };
@@ -45,6 +44,7 @@
 		CFE80FEA2919040C00BFE299 /* RecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE80FE92919040C00BFE299 /* RecipeDetailsView.swift */; };
 		CFE80FEC291A296C00BFE299 /* LaunchScreenView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFE80FEB291A296C00BFE299 /* LaunchScreenView.storyboard */; };
 		CFEC95F62938E25200F0B903 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66E872292BEF95003A4CC6 /* Recipe.swift */; };
+		CFEC9602293A1D0F00F0B903 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CFEC9601293A1D0F00F0B903 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,13 +90,13 @@
 		CFE1FC322918929600D01CA0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		CFE1FC342918A20C00D01CA0 /* IngredientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientManager.swift; sourceTree = "<group>"; };
 		CFE1FC392918B98400D01CA0 /* RecipesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesService.swift; sourceTree = "<group>"; };
-		CFE600D52934AC9300E86FB4 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CFE600D72934C08C00E86FB4 /* RecipeIndicationsLabeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIndicationsLabeView.swift; sourceTree = "<group>"; };
 		CFE600D9293506D100E86FB4 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		CFE80FE52918F84F00BFE299 /* LabelRecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelRecipeRowView.swift; sourceTree = "<group>"; };
 		CFE80FE72918F8D200BFE299 /* RecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRowView.swift; sourceTree = "<group>"; };
 		CFE80FE92919040C00BFE299 /* RecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView.swift; sourceTree = "<group>"; };
 		CFE80FEB291A296C00BFE299 /* LaunchScreenView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenView.storyboard; sourceTree = "<group>"; };
+		CFEC95FF293A1CAA00F0B903 /* SJDKitToolBox */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SJDKitToolBox; path = "../../../Documents/Developpement/Swift Packages/SJDKitToolBox"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFE1FC3D2918BA0D00D01CA0 /* Alamofire in Frameworks */,
+				CFEC9602293A1D0F00F0B903 /* Alamofire in Frameworks */,
+				CF46C6B0293A1E6200185645 /* SJDKitToolBox in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +133,7 @@
 		CF885C1C292DECEE00A18954 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CF885C2E292E340600A18954 /* CoreData */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -190,9 +192,11 @@
 		CFE1FBF329188C2400D01CA0 = {
 			isa = PBXGroup;
 			children = (
+				CFEC95FE293A1CAA00F0B903 /* Packages */,
 				CFE1FBFE29188C2400D01CA0 /* Reciplease */,
 				CFE1FC1529188C2500D01CA0 /* RecipleaseTests */,
 				CFE1FBFD29188C2400D01CA0 /* Products */,
+				CFEC9600293A1D0F00F0B903 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				CF885C2F292E341F00A18954 /* Recipe */,
-				CF885C2E292E340600A18954 /* CoreData */,
 				CF885C29292E291900A18954 /* Search */,
 			);
 			path = Model;
@@ -265,7 +268,6 @@
 				CFE1FC0829188C2500D01CA0 /* Assets.xcassets */,
 				CF862F982918DA1A007EBA6A /* ExtensionColor.swift */,
 				CF885C25292E211400A18954 /* Utils.swift */,
-				CFE600D52934AC9300E86FB4 /* Extension.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -281,6 +283,21 @@
 				CFE600D72934C08C00E86FB4 /* RecipeIndicationsLabeView.swift */,
 			);
 			path = RecipeViews;
+			sourceTree = "<group>";
+		};
+		CFEC95FE293A1CAA00F0B903 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				CFEC95FF293A1CAA00F0B903 /* SJDKitToolBox */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		CFEC9600293A1D0F00F0B903 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,7 +317,8 @@
 			);
 			name = Reciplease;
 			packageProductDependencies = (
-				CFE1FC3C2918BA0D00D01CA0 /* Alamofire */,
+				CFEC9601293A1D0F00F0B903 /* Alamofire */,
+				CF46C6AF293A1E6200185645 /* SJDKitToolBox */,
 			);
 			productName = Reciplease;
 			productReference = CFE1FBFC29188C2400D01CA0 /* Reciplease.app */;
@@ -408,7 +426,6 @@
 				CF66E873292BEF95003A4CC6 /* Recipe.swift in Sources */,
 				CFE1FC0729188C2400D01CA0 /* ContentView.swift in Sources */,
 				CF885C36292F340B00A18954 /* RecipeSession.swift in Sources */,
-				CFE600D62934AC9300E86FB4 /* Extension.swift in Sources */,
 				CFE1FC352918A20C00D01CA0 /* IngredientManager.swift in Sources */,
 				CF885C24292E1EA700A18954 /* IngredientView.swift in Sources */,
 				CFE1FC0229188C2400D01CA0 /* Persistence.swift in Sources */,
@@ -730,7 +747,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CFE1FC3C2918BA0D00D01CA0 /* Alamofire */ = {
+		CF46C6AF293A1E6200185645 /* SJDKitToolBox */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SJDKitToolBox;
+		};
+		CFEC9601293A1D0F00F0B903 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CFE1FC3B2918BA0D00D01CA0 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;

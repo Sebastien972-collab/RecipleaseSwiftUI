@@ -19,7 +19,7 @@ struct SearchView: View {
     var body: some View {
         NavigationStack{
             ZStack {
-                Color("bacgroundAppColor").edgesIgnoringSafeArea(.top)
+                Color.backgroundApp.edgesIgnoringSafeArea(.top)
                 VStack {
                     VStack {
                         Text("What's in your fridge ? ")
@@ -80,7 +80,7 @@ struct SearchView: View {
                         }
                     }
                     Spacer()
-                    ContinueButtonView(action: getRecipes)
+                    ContinueButtonView(title: "Search for recipe", action: getRecipes)
                         
                         .navigationDestination(isPresented: $showSearchView, destination: {
                             RecipesListView(recipes: recipes)

@@ -10,7 +10,6 @@ import CoreData
 struct RecipeDetailsView: View {
     @State var recipe : Recipe
     let favoriteRecipe = FavoriteRecipe.shared
-    
     @State private var showDirectionView = false
     @State private var error : Error?
     @State private var alertIsPresented = false
@@ -38,11 +37,11 @@ struct RecipeDetailsView: View {
                 }
                 .padding(.bottom)
                 IngredientView(ingredients: recipe.ingredientLines)
-                ContinueButtonView {
+                ContinueButtonView(title: "Get direction") {
                     showDirectionView.toggle()
                 }
                 .padding()
-                .navigationDestination(isPresented: $showDirectionView) {
+                .fullScreenCover(isPresented: $showDirectionView) {
                     SafariView(url: recipe.url)
                 }
             })
@@ -54,12 +53,15 @@ struct RecipeDetailsView: View {
                     Button {
                         do {
                             try favoriteRecipe.saveRecipe(recipe: recipe)
+                            isFavorite.toggle()
                         } catch {
                             self.error = error
+                            alertIsPresented.toggle()
                         }
+                       
                     } label: {
                         Image(systemName: "star.fill")
-                            .foregroundColor(favoriteRecipe.checkElementIsFavorite(recipe: recipe) ? .yellow : .white)
+                            .foregroundColor(isFavorite ? .yellow : .white)
                     }
                     
                 }

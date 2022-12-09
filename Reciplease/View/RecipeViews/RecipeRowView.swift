@@ -21,7 +21,7 @@ struct RecipeRow: View {
             VStack {
                 HStack {
                     Spacer()
-                    RecipeIndicationsLabeView(likes: 240, time: "recipe.time()")
+                    RecipeIndicationsLabeView(time: "\(recipe.time())")
                         .padding()
                 }
                 Spacer()

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SJDKitToolBox
 
 class Search: ObservableObject {
     @Published var ingredients : [String] = []
@@ -15,11 +16,11 @@ class Search: ObservableObject {
         guard ingredients.isNotEmpty else {
             throw SearchError.ingredientFieldEmpty
         }
-        guard !Utils.haveAnumber(value: ingredients) else {
+        guard !ingredients.containsAnumber else {
             throw SearchError.invalidCharacter
         }
         
-        let newIngredients = Utils.splitString(ingredients, with: ",")
+        let newIngredients = ingredients.splitString(with: ",")
         for newIngredient in newIngredients {
             if !self.ingredients.contains(newIngredient) {
                 

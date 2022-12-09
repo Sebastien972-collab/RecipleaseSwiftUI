@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ContinueButtonView: View {
+    let title : String
     var action: () -> Void
     
     var body: some View {
         Button(action: action) {
-            Text("Search for recipe")
+            Text(title)
                 .accessibilityLabel("Appuyer pour continuer")
                 .foregroundColor(.white)
                 .frame(maxWidth: 300, maxHeight: 60)
@@ -25,7 +26,7 @@ struct ContinueButtonView: View {
 
 struct ContinueButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ContinueButtonView {
+        ContinueButtonView(title: "Search for recipe") {
             
         }
     }

@@ -12,7 +12,7 @@ struct RecipesListView: View {
     
     var body: some View {
         ZStack {
-            Color("bacgroundAppColor").edgesIgnoringSafeArea(.top)
+            Color.backgroundApp.edgesIgnoringSafeArea(.top)
             ScrollView {
                 VStack {
                     ForEach(recipes, id: \.self) { recipe in

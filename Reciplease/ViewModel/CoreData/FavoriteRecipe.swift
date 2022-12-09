@@ -28,7 +28,7 @@ class FavoriteRecipe: NSManagedObject {
     var all : [Recipe] {
         var favoriteRecipes : [Recipe] = []
         for recipe in cdRecipes {
-            let newRecipe = Recipe(label: recipe.label!, image: recipe.image!, source: recipe.source!, url: recipe.url!, ingredientLines: Utils.splitString(recipe.ingredientLines!, with: ","), totalTime: 120)
+            let newRecipe = Recipe(label: recipe.label!, image: recipe.image!, source: recipe.source!, url: recipe.url!, ingredientLines: recipe.ingredientLines!.splitString(with: ","), totalTime: 120)
             favoriteRecipes.append(newRecipe)
         }
         return favoriteRecipes
