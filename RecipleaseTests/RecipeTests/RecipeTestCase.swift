@@ -44,4 +44,20 @@ final class RecipeTestCase: XCTestCase {
             XCTAssertNotNil(error)
         }
     }
+    
+    
+    
+    func testGetNextRecipeWithCorrectDataResponse() {
+        let recipeSession = RecipeSessionFake(fakeResponse: Result.success(FakeResponseData.recipeCorrectData) )
+        let recipeService = RecipleaseService(recipeSession: recipeSession)
+//        let expectation = XCTestExpectation(description: "Wait for queue change")
+        
+        recipeService.getRecepleases(ingredients: []) { success, hit, error in
+        }
+        recipeService.getNextReciplease { success, hit, error in
+            XCTAssertTrue(success)
+            XCTAssertNotNil(hit)
+            XCTAssertNil(error)
+        }
+    }
 }

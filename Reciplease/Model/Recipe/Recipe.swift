@@ -8,6 +8,7 @@
 import Foundation
 
 struct RecipesSearch : Codable, Hashable {
+    var _links : Links
     var hits : [Hit]
     
 }
@@ -58,3 +59,16 @@ struct Recipe : Hashable, Codable, Equatable{
     
     
 }
+
+
+struct Links: Hashable, Codable, Equatable {
+    var next: Next
+    
+}
+struct Next: Hashable, Codable, Equatable {
+    var href: String
+    var title: String
+    
+    
+}
+

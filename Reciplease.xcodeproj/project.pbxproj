@@ -28,6 +28,8 @@
 		CF885C3B292F3C8900A18954 /* RecipeSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF885C3A292F3C8900A18954 /* RecipeSessionFake.swift */; };
 		CF885C3D292F3F8300A18954 /* FakeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF885C3C292F3F8300A18954 /* FakeResponse.swift */; };
 		CF885C602930A37200A18954 /* RecipeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF885C5F2930A37200A18954 /* RecipeTestCase.swift */; };
+		CFBEB798295B338D00A6103D /* NextRecipe.json in Resources */ = {isa = PBXBuildFile; fileRef = CFBEB797295B338D00A6103D /* NextRecipe.json */; };
+		CFBEB7A0295CD42A00A6103D /* SJDKitToolBox in Frameworks */ = {isa = PBXBuildFile; productRef = CFBEB79F295CD42A00A6103D /* SJDKitToolBox */; };
 		CFE1FC0029188C2400D01CA0 /* RecipleaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FBFF29188C2400D01CA0 /* RecipleaseApp.swift */; };
 		CFE1FC0229188C2400D01CA0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FC0129188C2400D01CA0 /* Persistence.swift */; };
 		CFE1FC0529188C2400D01CA0 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FC0329188C2400D01CA0 /* Reciplease.xcdatamodeld */; };
@@ -78,6 +80,7 @@
 		CF885C3A292F3C8900A18954 /* RecipeSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSessionFake.swift; sourceTree = "<group>"; };
 		CF885C3C292F3F8300A18954 /* FakeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponse.swift; sourceTree = "<group>"; };
 		CF885C5F2930A37200A18954 /* RecipeTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTestCase.swift; sourceTree = "<group>"; };
+		CFBEB797295B338D00A6103D /* NextRecipe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NextRecipe.json; sourceTree = "<group>"; };
 		CFE1FBFC29188C2400D01CA0 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE1FBFF29188C2400D01CA0 /* RecipleaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseApp.swift; sourceTree = "<group>"; };
 		CFE1FC0129188C2400D01CA0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -96,7 +99,6 @@
 		CFE80FE72918F8D200BFE299 /* RecipeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRowView.swift; sourceTree = "<group>"; };
 		CFE80FE92919040C00BFE299 /* RecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView.swift; sourceTree = "<group>"; };
 		CFE80FEB291A296C00BFE299 /* LaunchScreenView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenView.storyboard; sourceTree = "<group>"; };
-		CFEC95FF293A1CAA00F0B903 /* SJDKitToolBox */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SJDKitToolBox; path = "../../../Documents/Developpement/Swift Packages/SJDKitToolBox"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			files = (
 				CFEC9602293A1D0F00F0B903 /* Alamofire in Frameworks */,
 				CF46C6B0293A1E6200185645 /* SJDKitToolBox in Frameworks */,
+				CFBEB7A0295CD42A00A6103D /* SJDKitToolBox in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				CF885C2C292E33C900A18954 /* Recipe.json */,
+				CFBEB797295B338D00A6103D /* NextRecipe.json */,
 				CF885C38292F3B0800A18954 /* FakeResponseData.swift */,
 				CF885C3A292F3C8900A18954 /* RecipeSessionFake.swift */,
 				CF885C3C292F3F8300A18954 /* FakeResponse.swift */,
@@ -192,7 +196,6 @@
 		CFE1FBF329188C2400D01CA0 = {
 			isa = PBXGroup;
 			children = (
-				CFEC95FE293A1CAA00F0B903 /* Packages */,
 				CFE1FBFE29188C2400D01CA0 /* Reciplease */,
 				CFE1FC1529188C2500D01CA0 /* RecipleaseTests */,
 				CFE1FBFD29188C2400D01CA0 /* Products */,
@@ -285,14 +288,6 @@
 			path = RecipeViews;
 			sourceTree = "<group>";
 		};
-		CFEC95FE293A1CAA00F0B903 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				CFEC95FF293A1CAA00F0B903 /* SJDKitToolBox */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		CFEC9600293A1D0F00F0B903 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +314,7 @@
 			packageProductDependencies = (
 				CFEC9601293A1D0F00F0B903 /* Alamofire */,
 				CF46C6AF293A1E6200185645 /* SJDKitToolBox */,
+				CFBEB79F295CD42A00A6103D /* SJDKitToolBox */,
 			);
 			productName = Reciplease;
 			productReference = CFE1FBFC29188C2400D01CA0 /* Reciplease.app */;
@@ -350,7 +346,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					CFE1FBFB29188C2400D01CA0 = {
 						CreatedOnToolsVersion = 14.1;
@@ -372,6 +368,7 @@
 			mainGroup = CFE1FBF329188C2400D01CA0;
 			packageReferences = (
 				CFE1FC3B2918BA0D00D01CA0 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				CFBEB79E295CD42A00A6103D /* XCRemoteSwiftPackageReference "SJDKitToolBox" */,
 			);
 			productRefGroup = CFE1FBFD29188C2400D01CA0 /* Products */;
 			projectDirPath = "";
@@ -398,6 +395,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFBEB798295B338D00A6103D /* NextRecipe.json in Resources */,
 				CF885C2D292E33C900A18954 /* Recipe.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,6 +493,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -553,6 +552,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -577,8 +577,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reciplease/Reciplease.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Reciplease/Preview Content\"";
 				DEVELOPMENT_TEAM = P9TXP3LGTK;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -618,8 +621,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reciplease/Reciplease.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Reciplease/Preview Content\"";
 				DEVELOPMENT_TEAM = P9TXP3LGTK;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -660,6 +666,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = P9TXP3LGTK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
@@ -685,6 +692,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = P9TXP3LGTK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
@@ -736,6 +744,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CFBEB79E295CD42A00A6103D /* XCRemoteSwiftPackageReference "SJDKitToolBox" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sebastien972-collab/SJDKitToolBox.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		CFE1FC3B2918BA0D00D01CA0 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -749,6 +765,11 @@
 /* Begin XCSwiftPackageProductDependency section */
 		CF46C6AF293A1E6200185645 /* SJDKitToolBox */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = SJDKitToolBox;
+		};
+		CFBEB79F295CD42A00A6103D /* SJDKitToolBox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFBEB79E295CD42A00A6103D /* XCRemoteSwiftPackageReference "SJDKitToolBox" */;
 			productName = SJDKitToolBox;
 		};
 		CFEC9601293A1D0F00F0B903 /* Alamofire */ = {

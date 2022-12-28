@@ -9,12 +9,8 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var ingredient : String = ""
-    @State private var searchError : Error = SearchError.uknowError
-    @State private var alertIsPresented = false
-    @State private var recipes : [Recipe] = []
-    @State private var showSearchView = false
     @FocusState private var fieldIsFocused : Bool
-    @ObservedObject private var search = Search()
+    @StateObject private var search = Search.shared
     
     var body: some View {
         NavigationStack{
@@ -27,15 +23,10 @@ struct SearchView: View {
                             TextField("Lemon, Cheese, Sausages...", text: $ingredient)
                                 .accessibilityLabel(Text("Entrez vos ingredient"))
                                 .focused($fieldIsFocused)
-                                
-                                
                             Button {
-                                do {
-                                    try search.addIngredients(ingredient)
-                                } catch {
-                                    searchError = error
-                                    alertIsPresented.toggle()
-                                }
+                                
+                                search.addIngredients(ingredient)
+                                
                                 ingredient.removeAll()
                             } label: {
                                 Text("Add")
@@ -79,64 +70,44 @@ struct SearchView: View {
                                 .bold()
                         }
                     }
+                    .onTapGesture {
+                        fieldIsFocused = false
+                    }
                     Spacer()
-                    ContinueButtonView(title: "Search for recipe", action: getRecipes)
-                        
-                        .navigationDestination(isPresented: $showSearchView, destination: {
-                            RecipesListView(recipes: recipes)
-                        })
-                        
-                        .padding()
+                    ZStack {
+                        if search.inProgress {
+                            ProgressView()
+                        } else {
+                            ContinueButtonView(title: "Search for recipe", action: search.getRecipes)
+                                .padding()
+                            
+                        }
+                    }
+                    .navigationDestination(isPresented: $search.isComplete, destination: {
+                        RecipesListView(search: search)
+                    })
                     
+                }
+                .onTapGesture {
+                    fieldIsFocused = false
                 }
                 .toolbar(content: {
                     ToolbarItem(placement: .principal) {
                         RecipleaseTitle()
                     }
                 })
-                
             }
-            .onTapGesture {
-                fieldIsFocused = false
-            }
-            .alert(isPresented: $alertIsPresented) {
+            .alert(isPresented: $search.showError) {
                 Alert(
                     title: Text("Error"),
-                    message: Text(searchError.localizedDescription),
+                    message: Text(search.searchError.localizedDescription),
                     dismissButton: .default(Text("Ok"))
                 )
             }
         }
         
     }
-    private func getRecipes() {
-        guard search.ingredients.isNotEmpty else {
-            searchError = SearchError.ingredientFieldEmpty
-            alertIsPresented.toggle()
-            return
-        }
-        RecipleaseService.shared.getRecepleases(ingredients: search.ingredients) { success, hits, error in
-            for ingredient in search.ingredients {
-                print(ingredient)
-            }
-            guard success, let hits = hits, error == nil else {
-                fieldIsFocused = false
-                searchError = error ?? SearchError.uknowError
-                alertIsPresented.toggle()
-                return
-            }
-            fieldIsFocused = false
-            self.recipes = search.hitsToRecipe(hits)
-            guard self.recipes.isNotEmpty else {
-                searchError = SearchError.noRecipeFound
-                alertIsPresented.toggle()
-                return
-            }
-            showSearchView.toggle()
-            print(recipes.count)
-            
-        }
-    }
+    
 }
 
 struct SearchView_Previews: PreviewProvider {
