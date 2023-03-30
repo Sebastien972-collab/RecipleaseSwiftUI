@@ -23,7 +23,7 @@ class Search: ObservableObject {
         self.service = service
     }
     
-    
+    /// Function that allows you to add ingredients
     func addIngredients(_ ingredients : String)  {
         guard ingredients.isNotEmpty else {
             searchError =  SearchError.ingredientFieldEmpty
@@ -44,18 +44,19 @@ class Search: ObservableObject {
             }
         }
     }
+    /// Function that allows you to erase existing ingredients
     func clearIngredients() {
         ingredients.removeAll()
     }
-    
-    func hitsToRecipe(_ hits : [Hit]) -> [Recipe] {
+    /// Transform hit to recipe
+    private func hitsToRecipe(_ hits : [Hit]) -> [Recipe] {
         var recipesFind : [Recipe] = []
         for recipe in hits {
             recipesFind.append(recipe.recipe)
         }
         return recipesFind
     }
-    
+    /// Launch recipe search
     func getRecipes() {
         guard ingredients.isNotEmpty else {
             searchError = SearchError.ingredientFieldEmpty
@@ -80,8 +81,10 @@ class Search: ObservableObject {
             self.showError.toggle()
             return
         }
-        
-        self.recipes = self.hitsToRecipe(hits)
+        let newRecipes = self.hitsToRecipe(hits)
+        for newRecipe in newRecipes {
+            self.recipes.append(newRecipe)
+        }
         guard self.recipes.isNotEmpty else {
             self.searchError = SearchError.noRecipeFound
             self.showError.toggle()

@@ -23,7 +23,7 @@ struct RecipeDetailsView: View {
                     AsyncImage(url: URL(string: recipe.image)) { image in
                         image
                             .resizable()
-                            .renderingMode(.original)
+                            .aspectRatio(contentMode: .fit)
                             .frame(maxWidth: .infinity, maxHeight: 300)
                             .accessibilityHidden(true)
                     } placeholder: {

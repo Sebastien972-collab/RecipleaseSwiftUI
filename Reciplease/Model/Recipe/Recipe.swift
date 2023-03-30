@@ -71,4 +71,3 @@ struct Next: Hashable, Codable, Equatable {
     
     
 }
-

@@ -6,7 +6,6 @@
 //
 
 import XCTest
-
 @testable import Reciplease
 
 final class SearchTest: XCTestCase {
@@ -40,11 +39,11 @@ final class SearchTest: XCTestCase {
         }
         XCTAssertEqual(newSearch.ingredients.count, 3)
     }
-    func testHitToRecipe() {
-        let recipes = newSearch.hitsToRecipe([.defaultHits])
-        XCTAssertFalse(recipes.isEmpty)
-        
-    }
+//    func testHitToRecipe() {
+//        let recipes = newSearch.hitsToRecipe([.defaultHits])
+//        XCTAssertFalse(recipes.isEmpty)
+//        
+//    }
     
     func testGetRecipesWithEmptyIngredients() {
         newSearch.clearIngredients()
