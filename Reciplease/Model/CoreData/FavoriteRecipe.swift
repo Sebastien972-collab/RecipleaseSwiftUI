@@ -8,12 +8,15 @@
 import Foundation
 import CoreData
 
-class FavoriteRecipe: NSManagedObject {
+class FavoriteRecipe {
     
-    static let shared = FavoriteRecipe()
+    static let shared = FavoriteRecipe(persistenceController: PersistenceController.shared)
     
-    let viewContext  = PersistenceController.shared.container.viewContext
+    let viewContext: NSManagedObjectContext
     
+    init(persistenceController: PersistenceController) {
+        self.viewContext = persistenceController.container.viewContext
+    }
     private var cdRecipes : [CDRecipe] {
         let request : NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
         request.sortDescriptors = [
@@ -42,7 +45,7 @@ class FavoriteRecipe: NSManagedObject {
         }
         return false
     }
-    private func removeElementInFavorite(recipe recipeToRemove : Recipe) throws {
+     func removeElementInFavorite(recipe recipeToRemove : Recipe) throws {
         for (index ,recipe) in all.enumerated() {
             if recipe == recipeToRemove {
                 viewContext.delete(FavoriteRecipe.shared.cdRecipes[index])
@@ -77,7 +80,7 @@ class FavoriteRecipe: NSManagedObject {
             throw error
         }
     }
-    
+    /// This function save or unsave a  recipe
     func saveRecipe(recipe : Recipe) throws {
         switch checkElementIsFavorite(recipe: recipe) {
         case true :

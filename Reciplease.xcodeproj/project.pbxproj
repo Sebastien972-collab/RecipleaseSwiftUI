@@ -28,9 +28,9 @@
 		CF885C3B292F3C8900A18954 /* RecipeSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF885C3A292F3C8900A18954 /* RecipeSessionFake.swift */; };
 		CF885C3D292F3F8300A18954 /* FakeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF885C3C292F3F8300A18954 /* FakeResponse.swift */; };
 		CF885C602930A37200A18954 /* RecipeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF885C5F2930A37200A18954 /* RecipeTestCase.swift */; };
+		CFAE710A29E4061A008FBA7E /* FavoriteRecipeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE710929E4061A008FBA7E /* FavoriteRecipeTest.swift */; };
 		CFBEB798295B338D00A6103D /* NextRecipe.json in Resources */ = {isa = PBXBuildFile; fileRef = CFBEB797295B338D00A6103D /* NextRecipe.json */; };
 		CFBEB7A0295CD42A00A6103D /* SJDKitToolBox in Frameworks */ = {isa = PBXBuildFile; productRef = CFBEB79F295CD42A00A6103D /* SJDKitToolBox */; };
-		CFBEB7A3295CEFAC00A6103D /* CoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBEB7A2295CEFAC00A6103D /* CoreDataTest.swift */; };
 		CFE1FC0029188C2400D01CA0 /* RecipleaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FBFF29188C2400D01CA0 /* RecipleaseApp.swift */; };
 		CFE1FC0229188C2400D01CA0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FC0129188C2400D01CA0 /* Persistence.swift */; };
 		CFE1FC0529188C2400D01CA0 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFE1FC0329188C2400D01CA0 /* Reciplease.xcdatamodeld */; };
@@ -80,8 +80,8 @@
 		CF885C3A292F3C8900A18954 /* RecipeSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSessionFake.swift; sourceTree = "<group>"; };
 		CF885C3C292F3F8300A18954 /* FakeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponse.swift; sourceTree = "<group>"; };
 		CF885C5F2930A37200A18954 /* RecipeTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTestCase.swift; sourceTree = "<group>"; };
+		CFAE710929E4061A008FBA7E /* FavoriteRecipeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTest.swift; sourceTree = "<group>"; };
 		CFBEB797295B338D00A6103D /* NextRecipe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NextRecipe.json; sourceTree = "<group>"; };
-		CFBEB7A2295CEFAC00A6103D /* CoreDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTest.swift; sourceTree = "<group>"; };
 		CFE1FBFC29188C2400D01CA0 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE1FBFF29188C2400D01CA0 /* RecipleaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseApp.swift; sourceTree = "<group>"; };
 		CFE1FC0129188C2400D01CA0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -191,10 +191,10 @@
 			path = RecipeTests;
 			sourceTree = "<group>";
 		};
-		CFBEB7A1295CEF8800A6103D /* CoreDataTest */ = {
+		CFAE710829E405F9008FBA7E /* CoreDataTest */ = {
 			isa = PBXGroup;
 			children = (
-				CFBEB7A2295CEFAC00A6103D /* CoreDataTest.swift */,
+				CFAE710929E4061A008FBA7E /* FavoriteRecipeTest.swift */,
 			);
 			path = CoreDataTest;
 			sourceTree = "<group>";
@@ -243,7 +243,7 @@
 		CFE1FC1529188C2500D01CA0 /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				CFBEB7A1295CEF8800A6103D /* CoreDataTest */,
+				CFAE710829E405F9008FBA7E /* CoreDataTest */,
 				CF885C37292F3A9900A18954 /* RecipeTests */,
 				CF885C32292F1F1C00A18954 /* SearchTest */,
 			);
@@ -446,7 +446,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFBEB7A3295CEFAC00A6103D /* CoreDataTest.swift in Sources */,
 				CF885C3D292F3F8300A18954 /* FakeResponse.swift in Sources */,
 				CF885C602930A37200A18954 /* RecipeTestCase.swift in Sources */,
 				CFEC95F62938E25200F0B903 /* Recipe.swift in Sources */,
@@ -454,6 +453,7 @@
 				CF885C3B292F3C8900A18954 /* RecipeSessionFake.swift in Sources */,
 				CF885C34292F1F3300A18954 /* SearchTest.swift in Sources */,
 				CF885C39292F3B0800A18954 /* FakeResponseData.swift in Sources */,
+				CFAE710A29E4061A008FBA7E /* FavoriteRecipeTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

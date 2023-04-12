@@ -8,7 +8,7 @@
 import Foundation
 
 enum SearchError : Error {
-    case invalidField, invalidCharacter, ingredientFieldEmpty, noRecipeFound ,uknowError
+    case invalidField, invalidCharacter, ingredientFieldEmpty, noNewsFound ,uknowError
 }
 
 extension SearchError : LocalizedError {
@@ -20,8 +20,8 @@ extension SearchError : LocalizedError {
             return NSLocalizedString("Le charactère n'est pas pris en charge.", comment: "Charactère non pris en charge.")
         case .ingredientFieldEmpty :
             return NSLocalizedString("Oups... Ce champ ne peut pas être vide", comment: "Champ vide")
-        case .noRecipeFound :
-            return NSLocalizedString("Oups... Nous n'avons pas trouver de recettes.", comment: "Pas de recette trouver")
+        case .noNewsFound :
+            return NSLocalizedString("Oups... Nous n'avons rien trouvé.", comment: "Pas de news trouver")
         case .uknowError :
             return NSLocalizedString("Une erreur inconnue est survenue", comment: "Unknow Error")
         }

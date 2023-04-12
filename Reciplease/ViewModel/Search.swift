@@ -13,7 +13,7 @@ class Search: ObservableObject {
     private init(){}
     @Published var ingredients : [String] = []
     @Published var recipes : [Recipe] = []
-    @Published var searchError: Error = SearchError.noRecipeFound
+    @Published var searchError: Error = SearchError.noNewsFound
     @Published var showError : Bool = false
     @Published var inProgress : Bool = false
     @Published var isComplete : Bool = false
@@ -86,7 +86,7 @@ class Search: ObservableObject {
             self.recipes.append(newRecipe)
         }
         guard self.recipes.isNotEmpty else {
-            self.searchError = SearchError.noRecipeFound
+            self.searchError = SearchError.noNewsFound
             self.showError.toggle()
             return
         }

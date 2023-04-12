@@ -22,8 +22,8 @@ final class SearchErrorTest: XCTestCase {
         XCTAssertEqual(error.localizedDescription, "Oups... Ce champ ne peut pas être vide")
     }
     func testGetNoRecipeFound() {
-        let error = SearchError.noRecipeFound
-        XCTAssertEqual(error.localizedDescription, "Oups... Nous n'avons pas trouver de recettes.")
+        let error = SearchError.noNewsFound
+        XCTAssertEqual(error.localizedDescription, "Oups... Nous n'avons rien trouvé.")
     }
     func testGetUnkowError() {
         let error = SearchError.uknowError

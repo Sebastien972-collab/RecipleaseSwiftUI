@@ -15,7 +15,29 @@ struct FavoriteRecipesListView: View {
         NavigationStack {
             ZStack {
                 Color.backgroundApp.edgesIgnoringSafeArea(.top)
-              //  RecipesListView(recipes: favoriteRecipes)
+                ZStack {
+                    Color.backgroundApp.edgesIgnoringSafeArea(.top)
+                    ScrollView {
+                        VStack {
+                            ForEach(favoriteRecipes, id: \.self) { recipe in
+                                NavigationLink {
+                                    RecipeDetailsView(recipe: recipe)
+                                } label: {
+                                    RecipeRow(recipe: recipe)
+                                }
+                                
+                            }
+
+                        }
+                    }
+                    
+                    .toolbar {
+                        ToolbarItem(placement : .principal) {
+                            RecipleaseTitle()
+                        }
+                        
+                    }
+                }
                     .toolbar {
                         ToolbarItem(placement: .principal) {
                             Text("Reciplease")
