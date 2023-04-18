@@ -45,10 +45,11 @@ class FavoriteRecipe {
         }
         return false
     }
+    ///This function remove a existing recipe
      func removeElementInFavorite(recipe recipeToRemove : Recipe) throws {
         for (index ,recipe) in all.enumerated() {
             if recipe == recipeToRemove {
-                viewContext.delete(FavoriteRecipe.shared.cdRecipes[index])
+                viewContext.delete(cdRecipes[index])
                 do {
                     try viewContext.save()
                 }

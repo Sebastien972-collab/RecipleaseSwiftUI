@@ -10,13 +10,12 @@ import XCTest
 
 final class FavoriteRecipeTest: XCTestCase {
     
-    var persistenceController = PersistenceController(inMemory: true)
     var favoriteRecipe: FavoriteRecipe!
     
     
     override func setUp() {
         super.setUp()
-        favoriteRecipe = FavoriteRecipe(persistenceController: persistenceController)
+        favoriteRecipe = FavoriteRecipe(persistenceController: PersistenceController(inMemory: true))
     }
     func test() {
         XCTAssertTrue(favoriteRecipe.all.isEmpty)
@@ -26,7 +25,7 @@ final class FavoriteRecipeTest: XCTestCase {
         do {
             try favoriteRecipe.saveRecipe(recipe: .preview)
         } catch {
-            print(error.localizedDescription)
+            XCTAssertNil(error)
         }
         XCTAssertTrue(favoriteRecipe.all.isNotEmpty)
         XCTAssertEqual(favoriteRecipe.all.count, 1 )
@@ -34,19 +33,40 @@ final class FavoriteRecipeTest: XCTestCase {
         
     }
     
-    func testSaveRecipeWhenAddAndRemoveRecipe() {
+    func testRemoveRecipe() {
         print(favoriteRecipe.all.count)
         do {
             try favoriteRecipe.saveRecipe(recipe: .preview)
             try favoriteRecipe.removeElementInFavorite(recipe: .preview)
         } catch {
             print(error.localizedDescription)
+            
         }
-        
         XCTAssertFalse(favoriteRecipe.checkElementIsFavorite(recipe: .preview))
         
         
     }
+    
+    func testRemoveANoExistingRecipe() {
+        do {
+            try favoriteRecipe.removeElementInFavorite(recipe: .preview)
+        } catch  {
+            XCTAssertNotNil(error)
+        }
+    }
+    
+    func testFunctionSaveRecipeWhoRemoveRecipe() {
+        do {
+            try favoriteRecipe.saveRecipe(recipe: .preview)
+            try favoriteRecipe.saveRecipe(recipe: .preview)
+        } catch {
+            print(error.localizedDescription)
+            
+        }
+        XCTAssertFalse(favoriteRecipe.checkElementIsFavorite(recipe: .preview))
+    }
+    
+    
     func testErrorRemoveRecipe() {
         do {
             try favoriteRecipe.removeElementInFavorite(recipe: .preview)
@@ -54,5 +74,11 @@ final class FavoriteRecipeTest: XCTestCase {
             XCTAssertNotNil(error)
         }
     }
+    
+    func test5() {
+        print("<<<<<<<<<<<<<<<<<<<<<<<<<<<FavoriteRecipeCount>>>>>>>>>>>>>>>>>>")
+        print(favoriteRecipe.all.count)
+    }
+    
 
 }
