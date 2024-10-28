@@ -17,7 +17,7 @@ struct RecipeDetailsView: View {
     
     var body: some View {
         ZStack {
-            Color.backgroundApp.edgesIgnoringSafeArea(.top)
+            Color("bacgroundAppColor").edgesIgnoringSafeArea(.all)
             VStack(content: {
                 VStack(alignment: .leading, spacing : 10) {
                     AsyncImage(url: URL(string: recipe.image)) { image in

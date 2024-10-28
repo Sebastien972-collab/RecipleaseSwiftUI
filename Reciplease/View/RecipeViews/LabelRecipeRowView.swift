@@ -24,7 +24,7 @@ struct LabelRecipeRowView: View {
                         .foregroundColor(.white)
                 }
                 .frame(maxWidth: 100, maxHeight: 60)
-                .background(Color.backgroundApp)
+                .background( Color("bacgroundAppColor"))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding()
             }

@@ -12,7 +12,7 @@ struct RecipesListView: View {
     @State private var scale = 1.0
     var body: some View {
         ZStack {
-            Color.backgroundApp.edgesIgnoringSafeArea(.top)
+
             ScrollView {
                 VStack {
                     ForEach(search.recipes, id: \.self) { recipe in
@@ -45,7 +45,7 @@ struct RecipesListView: View {
 struct RecipesListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RecipesListView(search: Search.shared)
+            RecipesListView(search: .preview)
         }
     }
 }

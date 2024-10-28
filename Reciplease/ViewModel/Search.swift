@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import SJDKitToolBox
 
 class Search: ObservableObject {
     static var shared = Search()
     private init(){}
+    @Published var newIngredients : String = ""
     @Published var ingredients : [String] = []
     @Published var recipes : [Recipe] = []
     @Published var searchError: Error = SearchError.noNewsFound
@@ -24,25 +24,26 @@ class Search: ObservableObject {
     }
     
     /// Function that allows you to add ingredients
-    func addIngredients(_ ingredients : String)  {
-        guard ingredients.isNotEmpty else {
+    func addIngredients()  {
+        guard !newIngredients.isNotEmpty else {
             searchError =  SearchError.ingredientFieldEmpty
             showError.toggle()
             return
         }
-        guard !ingredients.containsAnumber else {
+        guard !newIngredients.containsAnumber else {
             searchError =  SearchError.invalidCharacter
             showError.toggle()
             return
         }
         
-        let newIngredients = ingredients.splitString(with: ",")
+        let newIngredients = newIngredients.splitString(with: ",")
         for newIngredient in newIngredients {
             if !self.ingredients.contains(newIngredient) {
                 
                 self.ingredients.append(newIngredient)
             }
         }
+        self.newIngredients.removeAll()
     }
     /// Function that allows you to erase existing ingredients
     func clearIngredients() {
@@ -95,5 +96,11 @@ class Search: ObservableObject {
             self.isComplete.toggle()
         }
         self.inProgress.toggle()
+    }
+    static var preview: Search {
+        let newSearch = Search()
+        newSearch.ingredients.append("chiken")
+        newSearch.recipes = Recipe.preiews
+        return newSearch
     }
 }

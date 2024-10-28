@@ -8,11 +8,44 @@
 import SwiftUI
 
 struct SearchRecipeTextFieldView: View {
+    @Binding var text: String
+    var action: () -> Void
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Rectangle()
+                .fill(Color.white)
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundStyle(.gray)
+                TextField("Entrez vos ingredients !", text: $text)
+                    .padding()
+                Button {
+                    action()
+                } label: {
+                    Image(systemName: "plus.circle")
+                }
+
+                Divider()
+                Button(action: {}) {
+                    Image(systemName: "slider.horizontal.3")
+                }
+                .disabled(true)
+            }
+            .padding()
+        }
+        .frame(maxWidth: 350, maxHeight: 60)
+        .clipShape(RoundedRectangle(cornerRadius: 90))
+        
+        
+        
     }
 }
 
 #Preview {
-    SearchRecipeTextFieldView()
+    ZStack {
+        Color("bacgroundAppColor").edgesIgnoringSafeArea(.all)
+        SearchRecipeTextFieldView(text: .constant("")) {
+            print("tapped")
+        }
+    }
 }

@@ -14,9 +14,9 @@ struct FavoriteRecipesListView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.backgroundApp.edgesIgnoringSafeArea(.top)
+                Color("bacgroundAppColor").edgesIgnoringSafeArea(.all)
                 ZStack {
-                    Color.backgroundApp.edgesIgnoringSafeArea(.top)
+                    Color("bacgroundAppColor").edgesIgnoringSafeArea(.all)
                     ScrollView {
                         VStack {
                             ForEach(favoriteRecipes, id: \.self) { recipe in

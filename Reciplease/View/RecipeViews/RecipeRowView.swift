@@ -11,13 +11,7 @@ struct RecipeRow: View {
     
     var body: some View {
         ZStack {
-            AsyncImage(url: URL(string: recipe.image)) { image in
-                image.resizable()
-            } placeholder: {
-                ProgressView()
-            }
-            .accessibilityHidden(true)
-            
+            RoundedRectangleImageView(url: recipe.image)
             VStack {
                 HStack {
                     Spacer()

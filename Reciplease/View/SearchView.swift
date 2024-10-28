@@ -15,79 +15,31 @@ struct SearchView: View {
     var body: some View {
         NavigationStack{
             ZStack {
-                Color.backgroundApp.edgesIgnoringSafeArea(.top)
-                VStack {
-                    VStack {
-                        Text("What's in your fridge ? ")
-                        HStack {
-                            TextField("Lemon, Cheese, Sausages...", text: $ingredient)
-                                .accessibilityLabel(Text("Entrez vos ingredient"))
-                                .focused($fieldIsFocused)
-                            Button {
-                                
-                                search.addIngredients(ingredient)
-                                
-                                ingredient.removeAll()
-                            } label: {
-                                Text("Add")
-                                    .accessibilityLabel(Text("Appuyez pour ajouter un élément"))
-                                    .foregroundColor(.white)
-                                    .bold()
-                                    .padding()
-                                    .background(Color("greenApp"))
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
-                        }
-                        .padding()
-                        Divider()
-                    }
-                    .frame(maxWidth : .infinity, maxHeight: 200)
-                    .background(Color.white)
-                    .padding(.top)
-                    VStack {
-                        HStack() {
-                            Text("Your ingredients : ")
-                                .foregroundColor(.white)
-                            Spacer()
-                            Button {
-                                search.clearIngredients()
-                            } label: {
-                                Text("Clear")
-                                    .foregroundColor(.white)
-                                    .bold()
-                                    .padding()
-                                    .background(Color.gray)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                
-                            }
-                            
-                        }
-                        .padding()
-                        ForEach(search.ingredients, id : \.self) { ingredient in
-                            Text("- \(ingredient)")
-                                .font(.title3)
-                                .foregroundColor(.white)
-                                .bold()
-                        }
-                    }
-                    .onTapGesture {
-                        fieldIsFocused = false
-                    }
-                    Spacer()
-                    ZStack {
-                        if search.inProgress {
-                            ProgressView()
-                        } else {
-                            ContinueButtonView(title: "Search for recipe", action: search.getRecipes)
-                                .padding()
-                            
-                        }
-                    }
-                    .navigationDestination(isPresented: $search.isComplete, destination: {
-                        RecipesListView(search: search)
-                    })
+                Color("bacgroundAppColor").edgesIgnoringSafeArea(.all)
+                VStack(alignment: .center, content: {
+                    Text("What's in your fridge ? ")
+                        .font(.title2)
+                        .bold()
+                    SearchRecipeTextFieldView(text: $search.newIngredients, action: search.addIngredients)
+                    ListIngredientView(search: search)
+                        .animation(.easeIn(duration: 2), value: search.ingredients.isEmpty)
                     
-                }
+                    
+                    RecommendationView(recipes: search.recipes)
+                        .onAppear() {
+                            if search.recipes.isEmpty {
+                                search.ingredients.append("Bacon")
+                                search.getRecipes()
+                            }
+                        }
+                    Spacer()
+                    ContinueButtonView(title: "Search for recipes", action: search.getRecipes)
+                        .navigationDestination(isPresented: $search.isComplete) {
+                            RecipesListView(search: search)
+                        }
+                    
+                })
+                .padding()
                 .onTapGesture {
                     fieldIsFocused = false
                 }
@@ -113,5 +65,42 @@ struct SearchView: View {
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView()
+    }
+}
+
+struct ListIngredientView: View {
+    var search: Search
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Liste des ingrédients:")
+                Spacer()
+                Button {
+                    search.ingredients.removeAll()
+                } label: {
+                    Text("Effacer")
+                }
+                
+            }
+            ZStack {
+                Rectangle()
+                    .fill(Color.white)
+                VStack(alignment: .leading) {
+                    ForEach(search.ingredients,id: \.self) { ingredient in
+                        HStack {
+                            Text("-")
+                            Text(ingredient)
+                            Spacer()
+                        }
+                    }
+                    Spacer()
+                    
+                }
+                .multilineTextAlignment(.leading)
+                .padding()
+            }
+            .frame(maxWidth: .infinity, maxHeight: 300)
+            .clipShape(RoundedRectangle(cornerRadius: 25))
+        }
     }
 }
